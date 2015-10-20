@@ -7,9 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.dreamspace.uucampusseller.R;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +59,9 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
 
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView titleTv = (TextView) mToolBar.findViewById(R.id.custom_title_tv);
+        titleTv.setText(getString(R.string.app_name));
     }
 
     private void initDates() {
@@ -120,12 +126,22 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem scanCode = menu.findItem(R.id.scan_code_confirm);
+        MenuItem addGood = menu.findItem(R.id.add_good);
         switch (currentIndex){  //根据fragment的移动，选择相应的菜单栏
             case 0:
+                scanCode.setVisible(true);
+                addGood.setVisible(false);
                 break;
+
             case 1:
+                scanCode.setVisible(false);
+                addGood.setVisible(true);
                 break;
+
             case 2:
+                scanCode.setVisible(false);
+                addGood.setVisible(false);
                 break;
         }
         return super.onPrepareOptionsMenu(menu);
@@ -138,9 +154,13 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        //扫码确认
+        if (id == R.id.scan_code_confirm) {
             return true;
+        }
+        //添加商品
+        else if(id == R.id.add_good){
+
         }
 
         return super.onOptionsItemSelected(item);

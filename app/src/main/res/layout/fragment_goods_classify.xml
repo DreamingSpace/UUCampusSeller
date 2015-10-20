@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingBottom="40dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/btn_rl"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/new_edit_catalog_ll"
+            android:visibility="visible"
+            android:background="@color/goods_fragment_bg_color"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:text="@string/new_catalog"
+                android:id="@+id/new_catalog_btn"
+                style="@style/shop_management_btn_text_style"
+                android:background="@drawable/button_round"
+                android:layout_width="150dp"
+                android:layout_height="44dp" />
+            <Button
+                android:text="@string/edit_catalog"
+                android:id="@+id/edit_catalog_btn"
+                android:layout_toRightOf="@id/new_catalog_btn"
+                android:layout_marginLeft="40dp"
+                style="@style/shop_management_btn_text_style"
+                android:background="@drawable/button_round"
+                android:layout_width="150dp"
+                android:layout_height="44dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/finish_edit_btn"
+            android:text="@string/finish_edit"
+            android:visibility="invisible"
+            style="@style/shop_management_btn_text_style"
+            android:layout_marginLeft="36dp"
+            android:layout_marginRight="36dp"
+            android:background="@drawable/button_round"
+            android:layout_width="match_parent"
+            android:layout_height="44dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_above="@id/btn_rl"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/catalog_lv"
+            android:background="@color/white"
+            android:divider="@drawable/market_listview_divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <View
+            android:background="@color/divider_color"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

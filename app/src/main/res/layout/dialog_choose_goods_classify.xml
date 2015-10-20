@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/activity_margin"
     android:background="@drawable/dialog_goods_info"
     android:orientation="vertical">
 
@@ -19,7 +18,7 @@
             android:textColor="@color/text_normal"
             android:textSize="18sp" />
 
-        <com.dreamspace.uucampus.widget.WheelView
+        <com.dreamspace.uucampusseller.widget.WheelView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/goods_classify_wheel"
             android:layout_marginTop="14dp"

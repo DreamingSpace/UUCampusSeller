@@ -15,6 +15,8 @@
     <string name="order">订单</string>
     <string name="goods">商品</string>
     <string name="person">个人</string>
+    <string name="scan_code_confirm">扫码确认</string>
+    <string name="add_good">添加</string>
 
     <!-- Goods-->
     <string name="goods_detail_bottom_info">商品详情</string>
@@ -27,6 +29,9 @@
     <string name="write_goods_detail">填写商品详情</string>
     <string name="goods_describe">信息描述</string>
     <string name="goods_classify">商品分类</string>
+    <string name="no_goods_at_present">暂时还没有商品,快去</string>
+    <string name="no_goods_ba">吧</string>
+    <string name="add">添加</string>
 
 
 
@@ -40,5 +45,19 @@
     <string name="plz_select_photo">请选择一张图片~</string>
     <string name="preview_photo">图片预览</string>
     <string name="finish">完成</string>
+    <string name="catalog_list">分类列表</string>
+    <string name="preferential_list">优惠列表</string>
+    <string name="on_sale">出售中</string>
+    <string name="already_pull_off">已下架</string>
+    <string name="new_catalog">新建分类</string>
+    <string name="edit_catalog">编辑分类</string>
+    <string name="finish_edit">完成编辑</string>
+    <string name="good_catalog">商品分类</string>
+    <string name="confirm">确认</string>
+    <string name="add_new_catalog">新建商品分类</string>
+    <string name="new_cata_hint">输入文字</string>
+    <string name="pull_off">下架</string>
+    <string name="sale">上架</string>
+    <string name="edit">编辑</string>
 
 </resources>
