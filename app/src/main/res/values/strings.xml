@@ -15,6 +15,7 @@
     <string name="order">订单</string>
     <string name="goods">商品</string>
     <string name="person">个人</string>
+    <string name="back_home">返回主页</string>
 
     <!-- Goods-->
     <string name="goods_detail_bottom_info">商品详情</string>
@@ -27,10 +28,39 @@
     <string name="write_goods_detail">填写商品详情</string>
     <string name="goods_describe">信息描述</string>
     <string name="goods_classify">商品分类</string>
+    
+    <!-- order-->
+    <string name="order_time">下单时间</string>
+    <string name="pay_time">付款时间</string>
+    <string name="done_time">完成时间</string>
+    <string name="drawback_time">申请退款时间</string>
+    <string name="order_detail">订单详情</string>
+    <string name="order_number">订单编号</string>
+    <string name="phone_number">手机号码</string>
+    <string name="school_area">所在校区</string>
+    <string name="number">数量</string>
+    <string name="total_price">总价</string>
+    <string name="need_pay">需支付</string>
+    <string name="discount">优惠</string>
+    <string name="note">备注</string>
+    <string name="scan_ensure">扫描确认</string>
 
-
-
-
+    <!-- apply shop-->
+    <string name="apply">申请</string>
+    <string name="apply_hint_forward">老板您好，快去</string>
+    <string name="apply_hint_back">店铺吧</string>
+    <string name="shop_name">店铺名称</string>
+    <string name="shop_host_name">店主姓名</string>
+    <string name="connect_phone">联系电话</string>
+    <string name="connect_address">联系地址</string>
+    <string name="next_step">下 一 步</string>
+    <string name="shop_classify">店铺类型</string>
+    <string name="business_area">经营范围</string>
+    <string name="shop_introduction">店铺简介</string>
+    <string name="commit_apply">提 交 申 请</string>
+    <string name="apply_shop">申请成为商家</string>
+    <string name="apply_done">已提交申请</string>
+    <string name="apply_done_hint">您已成功提交申请，悠悠团队会在一个工作日内和您联系</string>
 
     <!-- select photo stings used-->
     <string name="select_photo">选择图片</string>

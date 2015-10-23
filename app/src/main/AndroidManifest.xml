@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dreamspace.uucampusseller" >
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +17,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.order.OrderDetailActivity"
+            android:label="@string/order_detail"/>
+        <activity android:name=".ui.activity.order.ApplyShopHintActivity"
+            android:label="@string/app_name"/>
+        <activity android:name=".ui.activity.order.ApplyShopFirstActivity"
+            android:label="@string/apply_shop"/>
+        <activity android:name=".ui.activity.order.ApplyShopSecondActivity"
+            android:label="@string/apply_shop"/>
+        <activity android:name=".ui.activity.order.ApplyShopDoneActivity"
+            android:label="@string/apply_done"/>
+        <activity android:name=".widget.photopicker.SelectPhotoActivity"/>
+        <activity android:name=".widget.photopicker.PhotoPreviewActivity"/>
     </application>
 
 </manifest>

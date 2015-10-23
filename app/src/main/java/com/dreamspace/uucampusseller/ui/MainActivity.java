@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.dreamspace.uucampusseller.R;
+import com.dreamspace.uucampusseller.ui.activity.order.ApplyShopHintActivity;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
 
     private List<Fragment> mFragments = new ArrayList<Fragment>();
     private List<LinearLayout> mLinearLayouts = new ArrayList<LinearLayout>();
-    private FragmentPagerAdapter mAdapter;
+
     private int currentIndex = 0;
 
     @Override
@@ -65,6 +66,8 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
         mFragments.add(orderFragment);
         mFragments.add(goodsFragment);
         mFragments.add(personFragment);
+
+        FragmentPagerAdapter mAdapter;
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -139,7 +142,8 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.scan_ensure) {
+            readyGo(ApplyShopHintActivity.class);
             return true;
         }
 

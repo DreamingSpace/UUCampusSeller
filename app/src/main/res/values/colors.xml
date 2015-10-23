@@ -14,7 +14,7 @@
     <color name="blue">#2196F3</color>
     <color name="grey">#E0E0E0</color>
     <color name="transparent">#00000000</color>
-
+    <color name="default_color">#E8E8E7</color>
     <!-- styles color-->
     <color name="app_theme_color">#06c1ae</color>
     <color name="main_bg">#E6E6E6</color>

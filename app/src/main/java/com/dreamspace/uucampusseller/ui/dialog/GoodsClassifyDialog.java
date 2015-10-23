@@ -49,7 +49,10 @@ public class GoodsClassifyDialog {
     //设置选中的item
     public void setClassifyName() {
         classifyName =classifys.get(goodsClassifyWV.getSelected());
-//        classifyName =goodsClassify[goodsClassifyWV.getSelected()];
+    }
+
+    public String getClassifyName(){
+        return classifyName;
     }
 
     public void setTopTitle(String title) {

@@ -19,7 +19,7 @@
             android:textColor="@color/text_normal"
             android:textSize="18sp" />
 
-        <com.dreamspace.uucampus.widget.WheelView
+        <com.dreamspace.uucampusseller.widget.WheelView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/goods_classify_wheel"
             android:layout_marginTop="14dp"
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/button_background_selectable"
+            android:background="@drawable/button_white_background_selectable"
             android:text="@string/ensure"
             android:textSize="18sp"
             android:textColor="@color/custom_text" />
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="18sp"
-            android:background="@drawable/button_background_selectable"
+            android:background="@drawable/button_white_background_selectable"
             android:text="@string/cancel"
             android:textColor="@color/custom_text" />
     </LinearLayout>
