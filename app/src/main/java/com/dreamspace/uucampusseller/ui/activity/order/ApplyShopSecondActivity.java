@@ -6,7 +6,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.dreamspace.uucampusseller.R;
+import com.dreamspace.uucampusseller.api.ApiManager;
 import com.dreamspace.uucampusseller.common.SharedData;
+import com.dreamspace.uucampusseller.common.utils.NetUtils;
+import com.dreamspace.uucampusseller.common.utils.TLog;
+import com.dreamspace.uucampusseller.model.api.CreateShopReq;
+import com.dreamspace.uucampusseller.model.api.CreateShopRes;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;
 import com.dreamspace.uucampusseller.ui.dialog.GoodsClassifyDialog;
 
@@ -15,6 +20,9 @@ import java.util.Collections;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by wufan on 2015/10/22.
@@ -29,12 +37,12 @@ public class ApplyShopSecondActivity extends AbsActivity{
     @Bind(R.id.apply_shop_business_area_et)
     EditText mBusinessAreaEt;
 
+    public static final String EXTRA_SHOP_ID="shop_id";
+
     private ArrayList<String> classifys;
     private boolean correct;
-
-    public static final String EXTRA_SHOP_CLASSIFY = "shop_classify";
-    public static final String EXTRA_SHOP_BUSINESS_AREA = "shop_business_area";
-    public static final String EXTRA_SHOP_introduction = "shop_introduction";
+    private CreateShopReq req=new CreateShopReq();
+    private String shop_id=null;
 
     @Override
     protected int getContentView() {
@@ -43,7 +51,12 @@ public class ApplyShopSecondActivity extends AbsActivity{
 
     @Override
     protected void prepareDatas() {
-
+        Bundle bundle = getIntent().getExtras();
+        req.setName(bundle.getString(ApplyShopFirstActivity.EXTRA_SHOP_NAME));
+        req.setOwner(bundle.getString(ApplyShopFirstActivity.EXTRA_SHOP_HOST_NAME));
+        req.setPhone_num(bundle.getString(ApplyShopFirstActivity.EXTRA_CONNECT_PHONE));
+        req.setAddress(bundle.getString(ApplyShopFirstActivity.EXTRA_CONNECT_ADDRESS));
+        req.setImage(bundle.getString(ApplyShopFirstActivity.EXTRA_SHOP_PHOTO));
     }
 
     @Override
@@ -54,19 +67,36 @@ public class ApplyShopSecondActivity extends AbsActivity{
     @OnClick(R.id.apply_shop_commit_btn)
     void commit(){
         if(isCorrect()) {
-            Bundle bundle = new Bundle();
-//            bundle.putString(ApplyShopFirstActivity.EXTRA_SHOP_PHOTO, mLocalImagePath);
-//            bundle.putString(ApplyShopFirstActivity.EXTRA_SHOP_NAME, mShopNameEt.getText().toString());
-//            bundle.putString(ApplyShopFirstActivity.EXTRA_SHOP_HOST_NAME, mShopHostNameEt.getText().toString());
-//            bundle.putString(ApplyShopFirstActivity.EXTRA_CONNECT_PHONE, mConnectPhoneEt.getText().toString());
-//            bundle.putString(ApplyShopFirstActivity.EXTRA_CONNECT_ADDRESS, mConnectAddressEt.getText().toString());
+            createShop();
 
-            bundle.putString(EXTRA_SHOP_BUSINESS_AREA,mBusinessAreaEt.getText().toString());
-            bundle.putString(EXTRA_SHOP_CLASSIFY,mClassifyEt.getText().toString());
-            bundle.putString(EXTRA_SHOP_introduction,mShopIntroductionEt.getText().toString());
-            readyGo(ApplyShopDoneActivity.class, bundle);
         }else{
             showToast("填写信息错误");
+        }
+    }
+
+    private void createShop() {
+        req.setCategory(mClassifyEt.getText().toString());
+        req.setMain(mBusinessAreaEt.getText().toString());
+        req.setDescription(mShopIntroductionEt.getText().toString());
+        if(NetUtils.isNetworkConnected(getApplicationContext())){
+            ApiManager.getService(getApplicationContext()).createShop(req, new Callback<CreateShopRes>() {
+                @Override
+                public void success(CreateShopRes createShopRes, Response response) {
+                    shop_id=createShopRes.getShop_id();
+                    TLog.i("创建店铺成功：",shop_id);
+                    Bundle bundle = new Bundle();
+                    bundle.putString(EXTRA_SHOP_ID,shop_id);
+                    readyGoThenKill(ApplyShopDoneActivity.class, bundle);
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    TLog.i("error:",error.getMessage());
+                    showInnerError(error);
+                }
+            });
+        }else {
+            showNetWorkError();
         }
     }
 

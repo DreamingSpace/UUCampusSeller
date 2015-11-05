@@ -1,5 +1,6 @@
 package com.dreamspace.uucampusseller.ui.activity.order;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -7,12 +8,24 @@ import android.widget.EditText;
 
 import com.bumptech.glide.Glide;
 import com.dreamspace.uucampusseller.R;
+import com.dreamspace.uucampusseller.api.ApiManager;
+import com.dreamspace.uucampusseller.common.UploadImage;
+import com.dreamspace.uucampusseller.common.utils.NetUtils;
+import com.dreamspace.uucampusseller.common.utils.TLog;
+import com.dreamspace.uucampusseller.model.api.QnRes;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;
 import com.dreamspace.uucampusseller.widget.photopicker.SelectPhotoActivity;
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
+
+import org.json.JSONObject;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by wufan on 2015/10/22.
@@ -40,6 +53,8 @@ public class ApplyShopFirstActivity extends AbsActivity {
 
     public static int PHOTO_REQUEST_CODE = 1;
     private String mLocalImagePath = null;
+    private String mPhotoPath=null;
+    ProgressDialog pd = null;
 
     @Override
     protected int getContentView() {
@@ -65,7 +80,7 @@ public class ApplyShopFirstActivity extends AbsActivity {
     void nextApply() {
         if (isCorrect()) {
             Bundle bundle = new Bundle();
-            bundle.putString(EXTRA_SHOP_PHOTO, mLocalImagePath);
+            bundle.putString(EXTRA_SHOP_PHOTO, mPhotoPath);
             bundle.putString(EXTRA_SHOP_NAME, mShopNameEt.getText().toString());
             bundle.putString(EXTRA_SHOP_HOST_NAME, mShopHostNameEt.getText().toString());
             bundle.putString(EXTRA_CONNECT_PHONE, mConnectPhoneEt.getText().toString());
@@ -78,6 +93,9 @@ public class ApplyShopFirstActivity extends AbsActivity {
 
     public boolean isCorrect() {
         //判断填写信息无误
+        if(mPhotoPath==null){
+            correct=false;
+        }
         boolean correct = true;
         return correct;
     }
@@ -86,13 +104,48 @@ public class ApplyShopFirstActivity extends AbsActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PHOTO_REQUEST_CODE && resultCode == RESULT_OK) {
             if (data != null) {
-                String mLocalImagePath = data.getStringExtra(SelectPhotoActivity.PHOTO_PATH);
-//                ArrayList<String> photo = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);
+                 mLocalImagePath = data.getStringExtra(SelectPhotoActivity.PHOTO_PATH);
+                upLoadImage(mLocalImagePath);  //图片上传至七牛服务器
                 Glide.with(this)
                         .load(mLocalImagePath)
                         .centerCrop()
                         .into(mPhotoIv);
             }
+        }
+    }
+
+    //上传图片
+    private void upLoadImage(final String path){
+        TLog.i("Path:",path);
+        pd = ProgressDialog.show(this, "", "正在创建", true, false);
+        if (NetUtils.isNetworkConnected(this.getApplicationContext())) {
+            ApiManager.getService(this).createQiNiuToken(new Callback<QnRes>() {
+                @Override
+                public void success(QnRes qnRes, Response response) {
+                    UploadImage.upLoadImage(path, qnRes.getKey(), qnRes.getToken(), new UpCompletionHandler() {
+                        @Override
+                        public void complete(String key, ResponseInfo info, JSONObject response) {
+                            if (info.isOK()) {
+                                mPhotoPath=key;   //获取上传的七牛服务器图片url，并传到下一个activity
+                                pd.dismiss();
+                            } else if (info.isServerError()) {
+                                pd.dismiss();
+                                showToast("服务暂时不可用，请稍后重试");
+                            }
+                        }
+                    }, null);
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    pd.dismiss();
+                    TLog.i("error:",error.getMessage() + error.toString());
+                    showInnerError(error);
+                }
+            });
+        }else{
+            pd.dismiss();
+            showNetWorkError();
         }
     }
 }

@@ -13,9 +13,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/order_margin"
-            android:layout_marginTop="@dimen/order_margin"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -28,70 +27,82 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:background="@color/divider_color" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/order_margin"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="80dp"
-                android:background="@color/orange" />
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/order_margin"
+            android:layout_marginRight="@dimen/order_margin"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/activity_margin"
-                android:orientation="vertical">
+                android:layout_height="72dp"
+                android:layout_marginBottom="@dimen/order_margin"
+                android:layout_marginTop="@dimen/order_margin"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="常州一日游"
-                    android:textSize="20sp" />
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="80dp"
+                    android:background="@color/orange" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="@dimen/order_margin"
-                    android:text="总价：1200" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/activity_margin"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="数量：2" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="常州一日游"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="6dp"
+                        android:text="总价：1200" />
+
+                    <TextView
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="数量：2" />
+
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:background="@color/divider_color" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/order_margin"
-            android:layout_marginTop="@dimen/order_margin"
+            android:layout_height="32dp"
             android:gravity="center_vertical">
 
             <TextView
+                android:textSize="13sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/order_margin"
                 android:text="用户手机号：13738383821" />
 
             <ImageView
-                android:src="@mipmap/ic_launcher"
                 android:layout_width="wrap_content"
                 android:layout_height="16dp"
-                android:layout_marginRight="@dimen/order_margin"
-                android:layout_alignParentRight="true" />
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/activity_margin"
+                android:src="@drawable/call_button_merchant" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

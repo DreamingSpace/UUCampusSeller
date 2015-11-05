@@ -8,7 +8,6 @@ import com.dreamspace.uucampusseller.ui.base.AbsActivity;
  */
 public class OrderDetailActivity extends AbsActivity{
 
-
     @Override
     protected int getContentView() {
         return R.layout.activity_order_detail;

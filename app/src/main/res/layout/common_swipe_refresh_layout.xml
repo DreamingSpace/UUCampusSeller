@@ -6,12 +6,12 @@
     android:orientation="vertical">
 
 
-    <com.dreamspace.uucampus.widget.LoadMoreListView
+    <com.dreamspace.uucampusseller.widget.LoadMoreListView
         android:id="@+id/load_more_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
         android:divider="@drawable/list_view_divider"
         android:dividerHeight="0.5dp">
-    </com.dreamspace.uucampus.widget.LoadMoreListView>
+    </com.dreamspace.uucampusseller.widget.LoadMoreListView>
 </android.support.v4.widget.SwipeRefreshLayout>
