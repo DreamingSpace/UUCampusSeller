@@ -48,6 +48,7 @@
                     android:textColor="@color/text_normal" />
 
                 <TextView
+                    android:id="@+id/order_detail_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" : 常州一日游"
@@ -67,6 +68,7 @@
                     android:textColor="@color/text_normal" />
 
                 <TextView
+                    android:id="@+id/order_detail_id_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" : 201503098736585"
@@ -87,6 +89,7 @@
                     android:textColor="@color/text_normal" />
 
                 <TextView
+                    android:id="@+id/order_detail_time_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" : 2015-03-09 12:25"
@@ -106,6 +109,7 @@
                     android:textColor="@color/text_normal" />
 
                 <TextView
+                    android:id="@+id/order_detail_phone_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" : 13365299808"
@@ -125,6 +129,7 @@
                     android:textColor="@color/text_normal" />
 
                 <TextView
+                    android:id="@+id/order_detail_location_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" : 东南大学九龙湖校区"
@@ -144,6 +149,7 @@
                     android:textColor="@color/text_normal" />
 
                 <TextView
+                    android:id="@+id/order_detail_quantity_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" : 2"
@@ -163,9 +169,10 @@
                     android:textColor="@color/text_normal" />
 
                 <TextView
+                    android:id="@+id/order_detail_total_price_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" : ￥1200"
+                    android:text=" : 1200"
                     android:textColor="@color/text_normal" />
             </LinearLayout>
 
@@ -182,9 +189,10 @@
                     android:textColor="@color/text_normal" />
 
                 <TextView
+                    android:id="@+id/order_detail_pay_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" : ￥1000"
+                    android:text=" : 1000"
                     android:textColor="@color/text_normal" />
 
                 <TextView
@@ -195,9 +203,10 @@
                     android:textColor="@color/text_normal" />
 
                 <TextView
+                    android:id="@+id/order_detail_discount_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="￥200"
+                    android:text=" : 200"
                     android:textColor="@color/text_normal" />
             </LinearLayout>
 
@@ -214,6 +223,7 @@
                     android:textColor="@color/text_normal" />
 
                 <TextView
+                    android:id="@+id/order_detail_memorandum_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" : 哈哈哈哈"

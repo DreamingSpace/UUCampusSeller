@@ -1,6 +1,6 @@
 package com.dreamspace.uucampusseller.ui.fragment.order;
 
-import android.os.Handler;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
@@ -9,17 +9,24 @@ import android.widget.AdapterView;
 import com.dreamspace.uucampusseller.R;
 import com.dreamspace.uucampusseller.adapter.base.BasisAdapter;
 import com.dreamspace.uucampusseller.adapter.base.order.OrderItemAdapter;
+import com.dreamspace.uucampusseller.api.ApiManager;
 import com.dreamspace.uucampusseller.common.SharedData;
+import com.dreamspace.uucampusseller.common.utils.NetUtils;
+import com.dreamspace.uucampusseller.common.utils.TLog;
 import com.dreamspace.uucampusseller.model.OrderItem;
+import com.dreamspace.uucampusseller.model.api.GetShopOrderListRes;
+import com.dreamspace.uucampusseller.ui.OnRefreshListener;
 import com.dreamspace.uucampusseller.ui.activity.order.OrderDetailActivity;
 import com.dreamspace.uucampusseller.ui.base.BaseLazyFragment;
 import com.dreamspace.uucampusseller.widget.LoadMoreListView;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by wufan on 2015/10/21.
@@ -31,13 +38,20 @@ public class OrderShowFragment extends BaseLazyFragment {
     @Bind(R.id.order_swipe_refresh)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private int tabPosition=0;
+    private int tabPosition = 0;
     private BasisAdapter mAdapter;
+    private int page=1;
+    private int status=1;
+    private String order_id=null;
+
+    public static final int LOAD=1;
+    public static final int ADD=2;
 
     @Override
     protected void onFirstUserVisible() {
         tabPosition = FragmentPagerItem.getPosition(getArguments());
-        Log.i("order tab:", SharedData.orderTabs[tabPosition]);
+
+        initStatus(tabPosition);
         loadingInitData();
     }
 
@@ -53,7 +67,7 @@ public class OrderShowFragment extends BaseLazyFragment {
 
     @Override
     protected View getLoadingTargetView() {
-        return null;
+        return mSwipeRefreshLayout;
     }
 
     @Override
@@ -83,58 +97,102 @@ public class OrderShowFragment extends BaseLazyFragment {
     }
 
     private void initDatas() {
-
         mAdapter = new OrderItemAdapter(getActivity());
         mMoreListView.setAdapter(mAdapter);
         mMoreListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                onItemPicked((OrderItem) mAdapter.getItem(position), position);
-                Log.i("INFO", "position:  " + position);
-                readyGo(OrderDetailActivity.class);
+                Bundle bundle = new Bundle();
+                order_id=onItemPicked((OrderItem) mAdapter.getItem(position), position);
+                TLog.i("INFO", "position:  " + position+" order_id:"+order_id);
+                bundle.putString(OrderDetailActivity.EXTRA_ORDER_ID,order_id);
+                readyGo(OrderDetailActivity.class,bundle);
             }
         });
     }
 
-    public void loadingInitData() {
-
-//        ApiManager.getService(getActivity().getApplicationContext()).get
-        List<OrderItem> orderItems = new ArrayList<OrderItem>();
-        for (int i = 0; i < 10; i++) {
-            OrderItem l = new OrderItem();
-            l.setName("Hello");
-            orderItems.add(l);
+    private void initStatus(int tabPosition) {
+        switch (tabPosition){
+            case 0:            //未付款
+                status=1;
+                break;
+            case 1:           //未消费
+                status=2;
+                break;
+            case 2:           //已完成
+                status=3;
+                break;
+            case 3:           //退款
+                status=0;
+                break;
         }
-        refreshDate(orderItems);
+        Log.i("order tab:", SharedData.orderTabs[tabPosition]+" status:"+status);
     }
 
-    public void refreshDate(List<OrderItem> mEntities) {
-        mAdapter.setmEntities(mEntities);
+    public void loadingInitData() {
+        if (NetUtils.isNetworkConnected(getActivity().getApplicationContext())) {
+            ApiManager.getService(getActivity().getApplicationContext()).getShopOrderList(page, status, new Callback<GetShopOrderListRes>() {
+                @Override
+                public void success(GetShopOrderListRes getShopOrderListRes, Response response) {
+                    refreshDate(getShopOrderListRes.getOrders(),LOAD);
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    showInnerError(error);
+                }
+            });
+        }else{
+            showNetWorkError();
+        }
+    }
+
+    public void refreshDate(List<OrderItem> mEntities,int type) {
+        switch (type){
+            case LOAD:
+                mAdapter.setmEntities(mEntities);
+                break;
+            case ADD:
+                mAdapter.addEntities(mEntities);
+                break;
+        }
         mAdapter.notifyDataSetChanged();
     }
 
-    public void onItemPicked(OrderItem mEntity, int position) {
-        Log.i("INFO", mEntity.toString());
+    public String onItemPicked(OrderItem mEntity, int position) {
+        Log.i("INFO", mEntity.get_id());
+        return mEntity.get_id();
     }
 
-    public void onPullUp() {
-        new Handler().postDelayed(new Runnable() {
-
+    public void onPullUp() {  //上拉刷新，加载更多
+        loadingDataByPageStatus(++page, status, new OnRefreshListener() {
             @Override
-            public void run() {
-                Log.i("onLoad", "on load complete");
+            public void onFinish(List mEntities) {
+                refreshDate(mEntities,ADD);
                 onPullUpFinished();
             }
-        }, 3000);
+
+            @Override
+            public void onError() {
+                onPullUpFinished();
+            }
+        });
     }
 
-    public void onPullDown() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                onPullDownFinished();
-            }
-        }, 3000);
+    public void onPullDown() {  //下拉刷新，加载最新的
+        page=1;
+       loadingDataByPageStatus(page, status, new OnRefreshListener() {
+           @Override
+           public void onFinish(List mEntities) {
+               refreshDate(mEntities,LOAD);
+               onPullDownFinished();
+           }
+
+           @Override
+           public void onError() {
+               onPullDownFinished();
+           }
+       });
     }
 
     public void onPullUpFinished() {
@@ -147,6 +205,31 @@ public class OrderShowFragment extends BaseLazyFragment {
         tabPosition = FragmentPagerItem.getPosition(getArguments());
         Log.i("Refresh tab:", SharedData.orderTabs[tabPosition]);
         mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    void loadingDataByPageStatus(int page,int status,final OnRefreshListener onRefreshListener){
+        if(NetUtils.isNetworkConnected(getActivity().getApplicationContext())){
+            ApiManager.getService(getActivity().getApplicationContext()).getShopOrderList(page, status, new Callback<GetShopOrderListRes>() {
+                @Override
+                public void success(GetShopOrderListRes getShopOrderListRes, Response response) {
+                    if(getShopOrderListRes!=null){
+                        onRefreshListener.onFinish(getShopOrderListRes.getOrders());
+                    }else{
+                        showToast(response.getReason());
+                        onRefreshListener.onError();
+                    }
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    onRefreshListener.onError();
+                    showInnerError(error);
+                }
+            });
+        }else{
+            onRefreshListener.onError();
+            showNetWorkError();
+        }
     }
 
 }

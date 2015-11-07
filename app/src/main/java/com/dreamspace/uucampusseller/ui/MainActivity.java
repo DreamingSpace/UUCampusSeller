@@ -66,7 +66,8 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
         //测试
        // access_token存放
         PreferenceUtils.putString(this.getApplicationContext(),
-                PreferenceUtils.Key.ACCESS,"aae889e0-82d4-11e5-bd1c-00163e021195");
+                PreferenceUtils.Key.ACCESS,"e75d1024-8155-11e5-a16f-00163e021195");// aae889e0-82d4-11e5-bd1c-00163e021195
+
         TLog.i("acces_token:",PreferenceUtils.getString(this.getApplicationContext(), PreferenceUtils.Key.ACCESS));
 
         OrderFragment orderFragment = new OrderFragment();
