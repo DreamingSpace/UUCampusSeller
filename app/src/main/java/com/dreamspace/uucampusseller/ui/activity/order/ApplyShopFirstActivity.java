@@ -49,7 +49,7 @@ public class ApplyShopFirstActivity extends AbsActivity {
     public static final String EXTRA_SHOP_HOST_NAME = "shop_host_name";
     public static final String EXTRA_CONNECT_PHONE = "connect_phone";
     public static final String EXTRA_CONNECT_ADDRESS = "connect_address";
-    private boolean correct;
+    private boolean correct=true;
 
     public static int PHOTO_REQUEST_CODE = 1;
     private String mLocalImagePath = null;
@@ -93,10 +93,9 @@ public class ApplyShopFirstActivity extends AbsActivity {
 
     public boolean isCorrect() {
         //判断填写信息无误
-        if(mPhotoPath==null){
+        if(mPhotoPath==null||mShopNameEt.length()==0||mShopHostNameEt.length()==0||mConnectPhoneEt.length()==0){
             correct=false;
         }
-        boolean correct = true;
         return correct;
     }
 

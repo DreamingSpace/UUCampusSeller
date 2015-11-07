@@ -3,6 +3,7 @@ package com.dreamspace.uucampusseller.api;
 
 import com.dreamspace.uucampusseller.model.api.CreateShopReq;
 import com.dreamspace.uucampusseller.model.api.CreateShopRes;
+import com.dreamspace.uucampusseller.model.api.GetOrderStatusRes;
 import com.dreamspace.uucampusseller.model.api.GetShopOrderDetailRes;
 import com.dreamspace.uucampusseller.model.api.GetShopOrderListRes;
 import com.dreamspace.uucampusseller.model.api.QnRes;
@@ -24,7 +25,6 @@ public interface UUService {
     @POST("/static/token/")
     void createQiNiuToken(Callback<QnRes> cb);
 
-
     //店铺
     //店铺创建
     @POST("/shop/")
@@ -35,6 +35,10 @@ public interface UUService {
 
 
     //订单
+    //商家每个状态的订单状态和订单数量
+    @GET("/shop/orders/status/")
+    void getOrderStatus(Callback<GetOrderStatusRes> cb);
+
     //商家获取订单列表
     @GET("/shop/orders/")
     void getShopOrderList(@Query("page")int page,@Query("status")int status,Callback<GetShopOrderListRes>cb);

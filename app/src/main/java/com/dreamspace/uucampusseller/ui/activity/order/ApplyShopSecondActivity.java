@@ -23,7 +23,6 @@ import butterknife.OnClick;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-
 /**
  * Created by wufan on 2015/10/22.
  */
@@ -128,7 +127,9 @@ public class ApplyShopSecondActivity extends AbsActivity{
     public boolean isCorrect() {
         //判断填写信息正确
         boolean correct = true;
-
+        if(mClassifyEt.length()==0||mShopIntroductionEt.length()==0){
+            correct=false;
+        }
         return correct;
     }
 }

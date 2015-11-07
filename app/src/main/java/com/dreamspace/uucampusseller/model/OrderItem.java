@@ -13,6 +13,8 @@ public class OrderItem {
     private String _id;
     private String change_time;
     private int quantity;
+    private float total_dicount;
+    private float total_original;
 
     public int getStatus() {
         return status;
@@ -76,5 +78,21 @@ public class OrderItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public float getTotal_dicount() {
+        return total_dicount;
+    }
+
+    public void setTotal_dicount(float total_dicount) {
+        this.total_dicount = total_dicount;
+    }
+
+    public float getTotal_original() {
+        return total_original;
+    }
+
+    public void setTotal_original(float total_original) {
+        this.total_original = total_original;
     }
 }
