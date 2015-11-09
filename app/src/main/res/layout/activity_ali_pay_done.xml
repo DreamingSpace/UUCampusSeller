@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/custom_toolbar"/>
+
+    <ImageView
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@drawable/register_icon_just_a_sign"/>
+
+    <View
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/divider_color"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="支付宝账户"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="80dp"
+            android:textColor="#1dcab7"
+            android:textSize="18sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="YY校园@qq.com"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="80dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/divider_color"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
+    <Button
+        android:id="@+id/ali_pay_up_button"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:text="绑定成功"
+        android:background="@drawable/button_round"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="18sp"/>
+
+</LinearLayout>

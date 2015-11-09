@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <include layout="@layout/custom_toolbar"/>
     <LinearLayout
-        android:id="@+id/person_linear"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
@@ -15,8 +15,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/register_icon_just_a_sign"/>
+            android:layout_marginTop="30dp"/>
         <TextView
             android:id="@+id/personal_name"
             android:layout_width="100dp"
@@ -184,5 +183,4 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:text="客服电话：18051017809（点击可拨打）"/>
-
 </LinearLayout>

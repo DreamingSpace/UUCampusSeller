@@ -44,6 +44,21 @@
             android:label="@string/apply_done"/>
         <activity android:name=".widget.photopicker.SelectPhotoActivity"/>
         <activity android:name=".widget.photopicker.PhotoPreviewActivity"/>
+
+        <activity android:name=".ui.activity.Personal.InfoChangeAct"
+            android:label="编辑店铺资料"/>
+        <activity android:name=".ui.activity.Personal.AliPayAct"
+            android:label="绑定支付宝"/>
+        <activity android:name=".ui.activity.Personal.AliPayUpAct"
+            android:label="绑定支付宝"/>
+        <activity android:name=".ui.activity.Personal.AliPayWaitAct"
+            android:label="绑定支付宝"/>
+        <activity android:name=".ui.activity.Personal.AliPayDoneAct"
+            android:label="绑定支付宝"/>
+        <activity android:name=".ui.activity.Personal.DirectionAct"
+            android:label="使用说明"/>
+        <activity android:name=".ui.activity.Personal.AboutAct"
+            android:label="关于"/>
     </application>
 
 </manifest>

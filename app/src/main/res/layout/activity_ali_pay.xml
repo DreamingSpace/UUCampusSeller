@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/custom_toolbar"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="15dp"
+        android:textSize="14sp"
+        android:text="提示：请输入您的支付宝账号，悠悠客服会向您支付0.001元，收到款项后请提交截图照片，以验证账号正确。验证后悠悠客服会按期通过认证支付宝账号进行结账。"/>
+
+    <Button
+        android:id="@+id/ali_pay_example_button"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="210dp"
+        android:text="查看示例照片"
+        android:background="@drawable/button_round"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="14sp"/>
+
+    <View
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/divider_color"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="支付宝账户 :"
+            android:textSize="18sp"/>
+        <EditText
+            android:id="@+id/ali_pay_account"
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="再输入一遍 :"
+            android:textSize="18sp"/>
+        <EditText
+            android:id="@+id/ali_pay_again"
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/ali_pay_button"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:text="确认"
+        android:background="@drawable/button_round"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="22sp"/>
+
+</LinearLayout>
