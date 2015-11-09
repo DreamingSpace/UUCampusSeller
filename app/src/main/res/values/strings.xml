@@ -7,6 +7,7 @@
     <string name="common_error_msg">抱歉,系统出错了!\n请点击屏幕重试~</string>
     <string name="common_no_network_msg">暂未连接上网络!\n请连接后点击屏幕重试~</string>
     <string name="common_loading_message">正在加载中...</string>
+    <string name="warn">提示</string>
 
     <string name="cancel">取消</string>
     <string name="ensure">确认</string>
@@ -19,6 +20,7 @@
     <string name="add_good">添加</string>
 
     <!-- Goods-->
+    <string name="add_good1">添加商品</string>
     <string name="goods_detail_bottom_info">商品详情</string>
     <string name="goods_detail_bottom_comment">商品评论</string>
     <string name="goods_name">商品名称</string>
@@ -32,10 +34,63 @@
     <string name="no_goods_at_present">暂时还没有商品,快去</string>
     <string name="no_goods_ba">吧</string>
     <string name="add">添加</string>
+    <string name="delete_good">删 除 商 品</string>
+    <string name="click_add_image">点击添加商品图片</string>
+    <string name="good_name">商品名称 :</string>
+    <string name="good_org_price">商品原价 :</string>
+    <string name="good_yoyo_price">悠悠价 :</string>
+    <string name="good_discount">商品优惠 :</string>
+    <string name="good_discount_hint">悠悠卡转向优惠 (选填)</string>
+    <string name="good_catalog2">商品分类 :</string>
+    <string name="good_key_word">关键字 :</string>
+    <string name="good_detail">商品详情 :</string>
+    <string name="good_catalog_hint">点击选择商品分类</string>
+    <string name="key_word_hint">用户检索关键字</string>
+    <string name="label_name_hint">商品描述标签，例 :消费流程</string>
+    <string name="label_name">标签名 :</string>
+    <string name="label_detail">标签详情描述 :</string>
+    <string name="add_detail_module">添加详情模块</string>
+    <string name="label_detail_hint">(请在这里输入不少于10个字)</string>
+    <string name="delete">删除</string>
+    <string name="good_edit">商品编辑</string>
+    <string name="next_step">下一步</string>
+    <string name="add_good_describe">添加商品描述</string>
+    <string name="choose_key_word">选择关键字</string>
+    <string name="choose_good_group">选择商品分类</string>
+    <string name="get_group_failed">获取商品分类失败，是否重新获取?</string>
+    <string name="get_label_failed">获取关键字失败，是否重新获取?</string>
+    <string name="in_delete">删除中</string>
+    <string name="group_delete_success">删除成功~</string>
+    <string name="modify_success">修改成功~</string>
+    <string name="modify_group">修改分类</string>
+    <string name="in_modify">修改中</string>
+    <string name="create_group">添加分类</string>
+    <string name="in_create">创建中</string>
+    <string name="create_success">创建成功</string>
+    <string name="success">成功~</string>
+    <string name="group_delete_confirm">确实删除该条分类？</string>
+    <string name="group_cant_be_null">分类不能为空</string>
+    <string name="RMB">￥</string>
+    <string name="no_good">没有商品</string>
+    <string name="no_more">没有更多</string>
+    <string name="in_pull_off">下架中</string>
+    <string name="in_sale">上架中</string>
+    <string name="pull_off_success">下架成功~</string>
+    <string name="on_sale_success">上架成功~</string>
+    <string name="in_create_good">添加商品中</string>
+    <string name="in_update_good">修改商品中</string>
+    <string name="good_update_success">商品修改成功</string>
+    <string name="good_create_success">商品创建成功</string>
+    <string name="plz_select_image">请选择商品图片</string>
 
-
-
-
+    <!-- good check valid-->
+    <string name="plz_enter_good_name">请输入商品名称~</string>
+    <string name="plz_enter_good_org_price">请输入商品原价~</string>
+    <string name="plz_enter_good_price">请输入商品价格~</string>
+    <string name="plz_choose_good_group">请选择商品分类~</string>
+    <string name="plz_choose_good_label">请选择商品关键字~</string>
+    <string name="plz_finish_label_info">请完善标签信息~</string>
+    <string name="label_detail_cant_less_10">标签详情不得少于10个字~</string>
 
     <!-- select photo stings used-->
     <string name="select_photo">选择图片</string>

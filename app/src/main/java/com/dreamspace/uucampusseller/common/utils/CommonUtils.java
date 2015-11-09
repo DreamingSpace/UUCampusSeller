@@ -18,6 +18,7 @@ package com.dreamspace.uucampusseller.common.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
@@ -200,5 +201,21 @@ public class CommonUtils {
                         imageView.setImageDrawable(resource);
                     }
                 });
+    }
+
+    public static void showImageWithGlide(Context context,ImageView imageView,String url){
+        Glide.with(context)
+                .load(url)
+                .placeholder(R.drawable.default_error)
+                .centerCrop()
+                .into(imageView);
+    }
+
+    public static void showImageWithGlideInCiv(Context context,CircleImageView circleImageView,String url){
+        Glide.with(context)
+                .load(url)
+                .error(R.drawable.default_error)
+                .centerCrop()
+                .into(circleImageView);
     }
 }

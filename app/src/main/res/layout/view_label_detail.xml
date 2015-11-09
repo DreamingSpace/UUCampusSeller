@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/label_detail_icon"
+            android:src="@drawable/add_product_icon_depict"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/label_detail_tv"
+            android:layout_centerVertical="true"
+            android:text="@string/good_detail"
+            android:textSize="14sp"
+            android:textColor="@color/near_black"
+            android:layout_marginLeft="43dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/delete_label_btn"
+            android:text="@string/delete"
+            android:textSize="14sp"
+            android:textColor="@color/app_theme_color"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/pull_off_sale_btn_bg"
+            android:layout_width="60dp"
+            android:layout_height="30dp" />
+    </RelativeLayout>
+
+    <View
+        android:background="@color/divider_color"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:id="@+id/label_tv"
+            android:text="@string/label_name"
+            android:textSize="14sp"
+            android:textColor="@color/near_black"
+            android:layout_marginLeft="43dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/label_et"
+            android:singleLine="true"
+            android:hint="@string/label_name_hint"
+            android:textSize="14sp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+    </LinearLayout>
+
+    <View
+        android:background="@color/divider_color"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="@string/label_detail"
+            android:textSize="14sp"
+            android:textColor="@color/near_black"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/label_detail_et"
+            android:textColor="@color/text_normal"
+            android:textSize="14sp"
+            android:hint="@string/label_detail_hint"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="start"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="130dp" />
+        <View
+            android:background="@color/divider_color"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+    </LinearLayout>
+</LinearLayout>

@@ -29,10 +29,8 @@ public class GoodsClassifyWithAddDialog {
     private String title;
     private AlertDialog dialog;
 
-    public GoodsClassifyWithAddDialog(Context context,ArrayList<String> data,String title){
+    public GoodsClassifyWithAddDialog(Context context){
         mContext = context;
-        this.title = title;
-        classifyList = data;
         View dialogView = LayoutInflater.from(mContext).inflate(R.layout.alterdialog_catalog,null);
         dialog = new AlertDialog.Builder(mContext).create();
         dialog.setView(dialogView);
@@ -41,9 +39,7 @@ public class GoodsClassifyWithAddDialog {
         confirmLl = (LinearLayout) dialogView.findViewById(R.id.confirm_ll);
         cancelLl = (LinearLayout) dialogView.findViewById(R.id.cancel_ll);
         addNewIv = (ImageView) dialogView.findViewById(R.id.new_iv);
-
-        wheelView.setDefault(1);
-        wheelView.setData(classifyList);
+        titleTv = (TextView) dialogView.findViewById(R.id.title_tv);
     }
 
     public String getSelected(){
@@ -53,8 +49,20 @@ public class GoodsClassifyWithAddDialog {
     public void show(){
         dialog.show();
     }
+
     public void dismiss(){
         dialog.dismiss();
+    }
+
+    public void setTitle(String title){
+        this.title = title;
+        titleTv.setText(title);
+    }
+
+    public void setData(ArrayList<String> data){
+        classifyList = data;
+        wheelView.setDefault(1);
+        wheelView.setData(classifyList);
     }
 
     public void setPositiveButton(View.OnClickListener listener){
@@ -67,5 +75,13 @@ public class GoodsClassifyWithAddDialog {
 
     public void setAddButton(View.OnClickListener listener){
         addNewIv.setOnClickListener(listener);
+    }
+
+    public void showAdd(boolean showAdd){
+        if(showAdd){
+            addNewIv.setVisibility(View.VISIBLE);
+        }else{
+            addNewIv.setVisibility(View.INVISIBLE);
+        }
     }
 }

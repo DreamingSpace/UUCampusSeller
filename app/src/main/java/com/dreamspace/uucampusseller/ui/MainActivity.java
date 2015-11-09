@@ -1,5 +1,6 @@
 package com.dreamspace.uucampusseller.ui;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -10,9 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dreamspace.uucampusseller.R;
+import com.dreamspace.uucampusseller.common.utils.PreferenceUtils;
+import com.dreamspace.uucampusseller.ui.activity.Goods.EditGoodInfoAct;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,9 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
 
     @Override
     protected void prepareDatas() {
-
+        PreferenceUtils.putString(this,PreferenceUtils.Key.ACCESS,"4d06cc40-82e0-11e5-bd1c-00163e021195");
+        PreferenceUtils.putString(this,PreferenceUtils.Key.SHOP_ID,"5636f3cf90c49063a04cabb8");
+        PreferenceUtils.putString(this,PreferenceUtils.Key.CATEGORY,"旅游");
     }
 
     @Override
@@ -160,7 +163,10 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
         }
         //添加商品
         else if(id == R.id.add_good){
-
+            Bundle bundle = new Bundle();
+            bundle.putInt(EditGoodInfoAct.IN_WAY,EditGoodInfoAct.IN_FROM_CRETAE);
+            readyGo(EditGoodInfoAct.class,bundle);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);

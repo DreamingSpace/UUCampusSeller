@@ -23,4 +23,9 @@ public class PersonFragment extends BaseFragment{
     public void initDatas() {
 
     }
+
+    @Override
+    protected View getLoadingTargetView() {
+        return null;
+    }
 }

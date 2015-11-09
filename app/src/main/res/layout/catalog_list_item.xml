@@ -32,7 +32,6 @@
             android:layout_height="13dp" />
     </LinearLayout>
     <TextView
-        android:text="一日游"
         android:layout_alignParentLeft="true"
         android:id="@+id/catalog_info_tv"
         android:layout_marginRight="20dp"

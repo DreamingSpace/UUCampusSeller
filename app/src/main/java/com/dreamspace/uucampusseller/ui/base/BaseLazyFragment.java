@@ -145,6 +145,11 @@ public abstract class BaseLazyFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         if (isFirstResume) {
@@ -374,6 +379,11 @@ public abstract class BaseLazyFragment extends Fragment {
             mVaryViewHelperController.restore();
         }
     }
+
+    protected void toggleRestore(){
+        mVaryViewHelperController.restore();
+    }
+
     protected void showInnerError(RetrofitError error) {
         if (error != null)
             showToast(CommonUtils.getErrorInfo(error).getReason());

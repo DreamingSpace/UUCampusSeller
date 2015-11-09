@@ -16,6 +16,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- phote picker-->
+        <activity android:name=".widget.photopicker.SelectPhotoActivity"/>
+        <activity android:name=".widget.photopicker.PhotoPreviewActivity"/>
+        <!-- goods-->
+        <activity android:name=".ui.activity.Goods.EditGoodInfoAct"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".ui.activity.Goods.EditGoodLabelAct"
+            android:windowSoftInputMode="stateHidden"/>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
 </manifest>

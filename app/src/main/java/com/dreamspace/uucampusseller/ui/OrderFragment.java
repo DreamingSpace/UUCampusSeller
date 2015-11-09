@@ -23,4 +23,9 @@ public class OrderFragment extends BaseFragment{
     public void initDatas() {
 
     }
+
+    @Override
+    protected View getLoadingTargetView() {
+        return null;
+    }
 }
