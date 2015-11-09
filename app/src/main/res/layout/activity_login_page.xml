@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include
+        layout="@layout/custom_toolbar"></include>
+    <ImageView
+        android:id="@+id/login_page_top_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:src="@drawable/register_icon_just_a_sign" />
+
+    <LinearLayout
+        android:id="@+id/login_page_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_page_top_img"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+
+            <EditText
+                android:id="@+id/Login_userName"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="37dp"
+                android:layout_marginRight="37dp"
+                android:background="@drawable/inputview"
+                android:hint="请输入您的手机号"
+                android:inputType="number"
+                android:paddingLeft="40dp"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignLeft="@id/Login_userName"
+                android:layout_centerVertical="true"
+                android:paddingLeft="10dp"
+                android:src="@drawable/register_button_phone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/Login_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="37dp"
+                android:layout_marginRight="37dp"
+                android:background="@drawable/inputview"
+                android:hint="请输入您的密码"
+                android:inputType="textPassword"
+                android:paddingLeft="40dp"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignLeft="@id/Login_pwd"
+                android:layout_centerVertical="true"
+                android:paddingLeft="10dp"
+                android:src="@drawable/register_button_password" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/login_page_loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_below="@id/login_page_input_layout"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="37dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_round"
+        android:gravity="center"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/login_page_text_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/login_page_loginButton"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/login_page_forget"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="75dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="忘记密码"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/login_page_register"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="75dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="立即注册"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</RelativeLayout>

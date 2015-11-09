@@ -6,13 +6,22 @@ import com.dreamspace.uucampusseller.model.api.CreateShopRes;
 import com.dreamspace.uucampusseller.model.api.GetOrderStatusRes;
 import com.dreamspace.uucampusseller.model.api.GetShopOrderDetailRes;
 import com.dreamspace.uucampusseller.model.api.GetShopOrderListRes;
+import com.dreamspace.uucampusseller.model.api.LoginReq;
+import com.dreamspace.uucampusseller.model.api.LoginRes;
 import com.dreamspace.uucampusseller.model.api.QnRes;
+import com.dreamspace.uucampusseller.model.api.RegisterReq;
+import com.dreamspace.uucampusseller.model.api.RegisterRes;
+import com.dreamspace.uucampusseller.model.api.ResetReq;
+import com.dreamspace.uucampusseller.model.api.SendVerifyReq;
 import com.dreamspace.uucampusseller.model.api.ShopInfoRes;
+import com.dreamspace.uucampusseller.model.api.UserInfoRes;
 
 import retrofit.Callback;
+import retrofit.client.Response;
 import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;
+import retrofit.http.PUT;
 import retrofit.http.Path;
 import retrofit.http.Query;
 
@@ -24,6 +33,27 @@ public interface UUService {
     //创建七牛上传凭证
     @POST("/static/token/")
     void createQiNiuToken(Callback<QnRes> cb);
+
+    //给指定手机发送短信验证码
+    @POST("/auth/code/")
+    void sendVerifyCode(@Body SendVerifyReq req, Callback<Response> cb);
+
+    //用户
+    //创建用户访问凭证(登陆)
+    @POST("/auth/login/")
+    void createAccessToken(@Body LoginReq req, Callback<LoginRes> cb);
+
+    //用户创建
+    @POST("/user/")
+    void register(@Body RegisterReq req, Callback<RegisterRes> cb);
+
+    //用户密码重置
+    @PUT("/user/reset_password/")
+    void resetPassword(@Body ResetReq req, Callback<Response> cb);
+
+    //用户信息查看（自己）
+    @GET("/user/")
+    void getUserInfo(Callback<UserInfoRes> cb);
 
     //店铺
     //店铺创建
