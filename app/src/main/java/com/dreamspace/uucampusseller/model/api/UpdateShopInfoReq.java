@@ -1,9 +1,9 @@
 package com.dreamspace.uucampusseller.model.api;
 
 /**
- * Created by wufan on 2015/9/29.
+ * Created by money on 2015/11/10.
  */
-public class ShopInfoRes {
+public class UpdateShopInfoReq {
     private String name;
     private String image;
     private String owner;
@@ -11,17 +11,6 @@ public class ShopInfoRes {
     private String address;
     private String main;
     private String description;
-    private String is_active;
-    private String is_collected;
-    private String category;
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
 
     public String getName() {
         return name;
@@ -79,19 +68,13 @@ public class ShopInfoRes {
         this.description = description;
     }
 
-    public String getIs_collected() {
-        return is_collected;
+    public String getCategory() {
+        return category;
     }
 
-    public void setIs_collected(String is_collected) {
-        this.is_collected = is_collected;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public String getIs_active() {
-        return is_active;
-    }
-
-    public void setIs_active(String is_active) {
-        this.is_active = is_active;
-    }
+    private String category;
 }

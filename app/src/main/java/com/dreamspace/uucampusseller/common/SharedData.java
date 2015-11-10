@@ -1,5 +1,7 @@
 package com.dreamspace.uucampusseller.common;
 
+import com.dreamspace.uucampusseller.model.api.ShopInfoRes;
+import com.dreamspace.uucampusseller.model.api.ShopStatusRes;
 import com.dreamspace.uucampusseller.model.api.UserInfoRes;
 
 /**
@@ -18,4 +20,6 @@ public class SharedData {
 
     //登录后获取的用户信息保存的实体类
     public static UserInfoRes user;
+    public static ShopStatusRes shopStatus;
+    public static ShopInfoRes shopInfo;
 }

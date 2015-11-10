@@ -10,6 +10,7 @@
     <color name="orange_transparent">#AAFADCA7</color>
     <color name="near_white">#f3f5f7</color>
     <color name="black_opaque">#AA000000</color>
+    <color name="black_40">#282828</color>
     <color name="red">#F44336</color>
     <color name="blue">#2196F3</color>
     <color name="grey">#E0E0E0</color>

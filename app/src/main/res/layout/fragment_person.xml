@@ -15,8 +15,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/register_icon_just_a_sign"/>
+            android:layout_marginTop="30dp" />
         <TextView
             android:id="@+id/personal_name"
             android:layout_width="100dp"
@@ -31,7 +30,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="163dp"
+        android:layout_height="204dp"
         android:layout_marginTop="15dp"
         android:background="@color/white"
         android:orientation="vertical">
@@ -95,7 +94,6 @@
                 android:layout_toRightOf="@+id/personal_img2"
                 android:textColor="@color/black_opaque"/>
             <ImageView
-                android:id="@+id/personal_arrow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -168,7 +166,6 @@
                 android:layout_toRightOf="@+id/personal_img4"
                 android:textColor="@color/black_opaque"/>
             <ImageView
-                android:id="@+id/personal_arrow4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -176,13 +173,52 @@
                 android:src="@drawable/right_arrow"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
+
+        <View
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/divider_color"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+
+        <RelativeLayout
+            android:id="@+id/personal_relative5"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <ImageView
+                android:id="@+id/personal_img5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:src="@drawable/setting_icon_suggestion"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="意见反馈"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/personal_img5"
+                android:textColor="@color/black_opaque"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/right_arrow"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
     </LinearLayout>
 
     <TextView
+        android:id="@+id/person_call_telephone"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
         android:text="客服电话：18051017809（点击可拨打）"/>
 
 </LinearLayout>

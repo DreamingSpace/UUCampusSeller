@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -49,16 +50,18 @@
             android:label="编辑店铺资料"/>
         <activity android:name=".ui.activity.Personal.AliPayAct"
             android:label="绑定支付宝"/>
-        <activity android:name=".ui.activity.Personal.AliPayUpAct"
-            android:label="绑定支付宝"/>
         <activity android:name=".ui.activity.Personal.AliPayWaitAct"
             android:label="绑定支付宝"/>
         <activity android:name=".ui.activity.Personal.AliPayDoneAct"
             android:label="绑定支付宝"/>
         <activity android:name=".ui.activity.Personal.DirectionAct"
             android:label="使用说明"/>
+        <activity android:name=".ui.activity.Personal.SettingAct"
+            android:label="设置"/>
         <activity android:name=".ui.activity.Personal.AboutAct"
             android:label="关于"/>
+        <activity android:name=".ui.activity.Personal.FeedBackAct"
+            android:label="意见反馈"/>
     </application>
 
 </manifest>
