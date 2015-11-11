@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.dreamspace.uucampusseller.R;
-import com.dreamspace.uucampusseller.common.utils.PreferenceUtils;
-import com.dreamspace.uucampusseller.common.utils.TLog;
 import com.dreamspace.uucampusseller.ui.activity.order.ApplyShopHintActivity;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;
 
@@ -65,10 +63,10 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
 
         //测试
        // access_token存放
-        PreferenceUtils.putString(this.getApplicationContext(),
-                PreferenceUtils.Key.ACCESS,"e75d1024-8155-11e5-a16f-00163e021195");// aae889e0-82d4-11e5-bd1c-00163e021195
-
-        TLog.i("acces_token:",PreferenceUtils.getString(this.getApplicationContext(), PreferenceUtils.Key.ACCESS));
+//        PreferenceUtils.putString(this.getApplicationContext(),
+//                PreferenceUtils.Key.ACCESS,"e75d1024-8155-11e5-a16f-00163e021195");// aae889e0-82d4-11e5-bd1c-00163e021195
+//
+//        TLog.i("acces_token:",PreferenceUtils.getString(this.getApplicationContext(), PreferenceUtils.Key.ACCESS));
 
         OrderFragment orderFragment = new OrderFragment();
         GoodsFragment goodsFragment = new GoodsFragment();
