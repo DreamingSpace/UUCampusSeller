@@ -165,7 +165,7 @@ public class OnSalePullOffFragment extends BaseLazyFragment {
                                     initProgressDialog();
                                     progressDialog.setContent(mContext.getString(R.string.in_pull_off));
                                     progressDialog.show();
-                                    updateGoodInfo(good_id, 0, position);
+                                    updateGoodInfo(good_id, 0);
                                 }
                             });
 
@@ -204,7 +204,7 @@ public class OnSalePullOffFragment extends BaseLazyFragment {
                                     initProgressDialog();
                                     progressDialog.setContent(mContext.getString(R.string.in_pull_off));
                                     progressDialog.show();
-                                    updateGoodInfo(good_id,1,position);
+                                    updateGoodInfo(good_id,1);
                                 }
                             });
                             toggleRestore();
@@ -230,7 +230,7 @@ public class OnSalePullOffFragment extends BaseLazyFragment {
         });
     }
 
-    private void updateGoodInfo(String good_id, final int is_active, final int position){
+    private void updateGoodInfo(String good_id, final int is_active){
         if(!NetUtils.isNetworkConnected(mContext)){
             progressDialog.dismiss();
             showNetWorkError();
@@ -245,11 +245,15 @@ public class OnSalePullOffFragment extends BaseLazyFragment {
                 if (commonStatusRes != null) {
                     progressDialog.dismiss();
                     if (is_active == 0) {
-                        onSaleListAdapter.removeItem(position);
                         showToast(getString(R.string.pull_off_success));
+                        firstGetData = true;
+                        goodPage = 1;
+                        getSelfGoods();
                     } else {
-                        pullOffListAdapter.removeItem(position);
                         showToast(getString(R.string.on_sale_success));
+                        firstGetData = true;
+                        goodPage = 1;
+                        getSelfGoods();
                     }
                 }
             }

@@ -82,7 +82,9 @@
     <string name="good_update_success">商品修改成功</string>
     <string name="good_create_success">商品创建成功</string>
     <string name="plz_select_image">请选择商品图片</string>
-
+    <string name="confirm_delete_good">确认删除商品吗？</string>
+    <string name="good_delete_success">商品删除成功~</string>
+    <string name="in_delete_good">删除商品中</string>
     <!-- good check valid-->
     <string name="plz_enter_good_name">请输入商品名称~</string>
     <string name="plz_enter_good_org_price">请输入商品原价~</string>

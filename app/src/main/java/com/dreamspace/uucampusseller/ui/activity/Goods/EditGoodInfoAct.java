@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.dreamspace.uucampusseller.R;
@@ -17,6 +18,7 @@ import com.dreamspace.uucampusseller.api.ApiManager;
 import com.dreamspace.uucampusseller.common.utils.CommonUtils;
 import com.dreamspace.uucampusseller.common.utils.NetUtils;
 import com.dreamspace.uucampusseller.common.utils.PreferenceUtils;
+import com.dreamspace.uucampusseller.model.CommonStatusRes;
 import com.dreamspace.uucampusseller.model.CreateGoodReq;
 import com.dreamspace.uucampusseller.model.CreateGoodRes;
 import com.dreamspace.uucampusseller.model.GetGroupsRes;
@@ -70,6 +72,7 @@ public class EditGoodInfoAct extends AbsActivity{
     private GoodsClassifyWithAddDialog groupDialog;
     private MsgDialog noLabelsMsgDialog;
     private MsgDialog noGroupsMsgDialog;
+    private MsgDialog deleteGoodDialog;
     private AddNewInfoDialog newGroupDialog;
     private ProgressDialog progressDialog;
     private boolean imageChange = false;//用来判断用户是否更换了图片
@@ -104,6 +107,9 @@ public class EditGoodInfoAct extends AbsActivity{
     @Override
     protected void initViews() {
         getSupportActionBar().setTitle(R.string.add_good1);
+        if(inWay == IN_FROM_CRETAE){
+            goodDeleteBtn.setVisibility(View.INVISIBLE);
+        }
         initListeners();
     }
 
@@ -144,7 +150,8 @@ public class EditGoodInfoAct extends AbsActivity{
         goodDeleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                initDeleteGoodDialog();
+                deleteGoodDialog.show();
             }
         });
     }
@@ -210,7 +217,7 @@ public class EditGoodInfoAct extends AbsActivity{
     }
 
     private boolean isValid(){
-        if(imagePath == null){
+        if(inWay == IN_FROM_CRETAE && imagePath == null){
             showToast(getString(R.string.plz_select_image));
             return false;
         }else if(CommonUtils.isEmpty(goodNameEt.getText().toString())){
@@ -405,6 +412,32 @@ public class EditGoodInfoAct extends AbsActivity{
         });
     }
 
+    private void initDeleteGoodDialog(){
+        if(deleteGoodDialog != null){
+            return;
+        }
+
+        deleteGoodDialog = new MsgDialog(this);
+        deleteGoodDialog.setContent(getString(R.string.confirm_delete_good));
+        deleteGoodDialog.setPositiveButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initProgressDialog();
+                progressDialog.setContent(getString(R.string.in_delete_good));
+                deleteGoodDialog.dismiss();
+                progressDialog.show();
+                deleteGood();
+            }
+        });
+
+        deleteGoodDialog.setNegativeButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteGoodDialog.dismiss();
+            }
+        });
+    }
+
     //创建分类
     private void createGroup(String groupName){
         if(!NetUtils.isNetworkConnected(this)){
@@ -435,6 +468,7 @@ public class EditGoodInfoAct extends AbsActivity{
                 });
     }
 
+    //获取商品详情
     private void getGoodDetail(String goods_id){
         if(!NetUtils.isNetworkConnected(this)){
             showNetWorkError();
@@ -444,8 +478,8 @@ public class EditGoodInfoAct extends AbsActivity{
         ApiManager.getService(this).getGoodDetail(goods_id, new Callback<GoodDetailRes>() {
             @Override
             public void success(GoodDetailRes goodDetailRes, Response response) {
-                if(goodDetailRes != null && !actDestory){
-                    CommonUtils.showImageWithGlide(EditGoodInfoAct.this,goodImageIv,goodDetailRes.getImage());
+                if (goodDetailRes != null && !actDestory) {
+                    CommonUtils.showImageWithGlide(EditGoodInfoAct.this, goodImageIv, goodDetailRes.getImage());
                     goodOrgPriceEt.setText(goodDetailRes.getOriginal_price());
                     yoyoPriceEt.setText(goodDetailRes.getPrice());
                     discountEt.setText(goodDetailRes.getDiscount());
@@ -457,6 +491,31 @@ public class EditGoodInfoAct extends AbsActivity{
 
             @Override
             public void failure(RetrofitError error) {
+                showInnerError(error);
+            }
+        });
+    }
+
+    //删除商品
+    private void deleteGood(){
+        if(!NetUtils.isNetworkConnected(this)){
+            showNetWorkError();
+            progressDialog.dismiss();
+            return;
+        }
+        ApiManager.getService(this).deleteGood(goodId, new Callback<CommonStatusRes>() {
+            @Override
+            public void success(CommonStatusRes commonStatusRes, Response response) {
+                if(commonStatusRes != null && !actDestory){
+                    finish();
+                    progressDialog.dismiss();
+                    Toast.makeText(EditGoodInfoAct.this,getString(R.string.good_delete_success),Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                progressDialog.dismiss();
                 showInnerError(error);
             }
         });

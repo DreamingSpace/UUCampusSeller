@@ -59,7 +59,7 @@ public interface UUService {
     @GET("/shop/{shop_id}/group/")
     void getGroups(@Path("shop_id")String shop_id,Callback<GetGroupsRes> cb);
 
-    @DELETE("/shop/{shop_id}/group/")
+    @PUT("/shop/{shop_id}/group/")
     void deleteGroup(@Path("shop_id") String shop_id,@Body GroupDeleteReq groupDeleteReq,Callback<GroupDeleteRes> cb);
 
     @POST("/shop/{shop_id}/group/")
@@ -75,4 +75,7 @@ public interface UUService {
 
     @PUT("/goods/{goods_id}")
     void updateGoodInfo(@Path("goods_id")String good_id,@Body UpdateGoodReq goodReq,Callback<CommonStatusRes> cb);
+
+    @DELETE("/goods/{goods_id}")
+    void deleteGood(@Path("goods_id")String good_id,Callback<CommonStatusRes> cb);
 }

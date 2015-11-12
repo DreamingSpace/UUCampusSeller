@@ -211,8 +211,7 @@ public class GoodsClassifyFragment extends BaseLazyFragment {
                     @Override
                     public void failure(RetrofitError error) {
                         progressDialog.dismiss();
-//                        showInnerError(error);
-                        System.out.println(error.getMessage());
+                        showInnerError(error);
                     }
                 });
     }
