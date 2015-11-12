@@ -100,7 +100,7 @@ public class OrderFragment extends BaseLazyFragment {
             pages.add(FragmentPagerItem.of(item, OrderShowFragment.class));
         }
         FragmentStatePagerItemAdapter adapter = new FragmentStatePagerItemAdapter(
-                getActivity().getSupportFragmentManager(), pages);
+                getChildFragmentManager(), pages);
         mViewPager.setAdapter(adapter);
         mSmartTabLayout.setViewPager(mViewPager);
     }
