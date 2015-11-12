@@ -1,4 +1,4 @@
-package com.dreamspace.uucampusseller.model;
+package com.dreamspace.uucampusseller.model.api;
 
 /**
  * Created by wufan on 2015/9/28.

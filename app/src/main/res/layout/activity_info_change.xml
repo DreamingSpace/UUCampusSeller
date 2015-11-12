@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/custom_toolbar"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/info_change_iron"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="30dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:gravity="center_vertical"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:text="店铺名称:"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/info_text1"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:gravity="center_vertical"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:text="店主姓名:"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/info_text2"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:gravity="center_vertical"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:text="电话："
+                    android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/info_text3"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:gravity="center_vertical"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:text="地址:"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/info_text4"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:gravity="center_vertical"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:text="店铺类型:"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/info_text5"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:gravity="center_vertical"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:text="经营范围:"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/info_text6"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="80dp"
+                android:orientation="vertical">
+                <TextView
+                    android:gravity="center_vertical"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:text="店家介绍:"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/info_text7"
+                    android:textSize="14sp"
+                    android:background="@drawable/feedback_edittext_bg"
+                    android:gravity="start"
+                    android:paddingTop="12dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="12dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="240dp"
+                    android:layout_height="130dp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/info_change_button"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button_round"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="50dp"
+                android:text="申请修改资料"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_marginBottom="100dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

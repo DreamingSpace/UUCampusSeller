@@ -36,6 +36,7 @@
     <declare-styleable name="TintImageView">
         <attr name="tintColor" format="color" />
     </declare-styleable>
+
     <!-- CircularProgressBar -->
     <declare-styleable name="CircularProgressBar">
         <attr name="cpbStyle" format="reference" />
@@ -47,6 +48,7 @@
         <attr name="cpb_sweep_speed" format="float" />
         <attr name="cpb_rotation_speed" format="float" />
     </declare-styleable>
+
     <!-- ChangeColorTabWithText-->
     <attr name="drawable" format="reference"></attr>
     <attr name="text" format="string"></attr>

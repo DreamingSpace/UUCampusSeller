@@ -18,6 +18,7 @@
     <string name="person">个人</string>
     <string name="scan_code_confirm">扫码确认</string>
     <string name="add_good">添加</string>
+    <string name="back_home">返回主页</string>
 
     <!-- Goods-->
     <string name="add_good1">添加商品</string>
@@ -53,7 +54,7 @@
     <string name="label_detail_hint">(请在这里输入不少于10个字)</string>
     <string name="delete">删除</string>
     <string name="good_edit">商品编辑</string>
-    <string name="next_step">下一步</string>
+    <string name="next_step1">下一步</string>
     <string name="add_good_describe">添加商品描述</string>
     <string name="choose_key_word">选择关键字</string>
     <string name="choose_good_group">选择商品分类</string>
@@ -85,6 +86,7 @@
     <string name="confirm_delete_good">确认删除商品吗？</string>
     <string name="good_delete_success">商品删除成功~</string>
     <string name="in_delete_good">删除商品中</string>
+
     <!-- good check valid-->
     <string name="plz_enter_good_name">请输入商品名称~</string>
     <string name="plz_enter_good_org_price">请输入商品原价~</string>
@@ -93,6 +95,39 @@
     <string name="plz_choose_good_label">请选择商品关键字~</string>
     <string name="plz_finish_label_info">请完善标签信息~</string>
     <string name="label_detail_cant_less_10">标签详情不得少于10个字~</string>
+    
+    <!-- order-->
+    <string name="order_time">下单时间</string>
+    <string name="pay_time">付款时间</string>
+    <string name="done_time">完成时间</string>
+    <string name="drawback_time">申请退款时间</string>
+    <string name="order_detail">订单详情</string>
+    <string name="order_number">订单编号</string>
+    <string name="phone_number">手机号码</string>
+    <string name="school_area">所在校区</string>
+    <string name="number">数量</string>
+    <string name="total_price">总价</string>
+    <string name="need_pay">需支付</string>
+    <string name="discount">优惠</string>
+    <string name="note">备注</string>
+    <string name="scan_ensure">扫描确认</string>
+
+    <!-- apply shop-->
+    <string name="apply">申请</string>
+    <string name="apply_hint_forward">老板您好，快去</string>
+    <string name="apply_hint_back">店铺吧</string>
+    <string name="shop_name">店铺名称</string>
+    <string name="shop_host_name">店主姓名</string>
+    <string name="connect_phone">联系电话</string>
+    <string name="connect_address">联系地址</string>
+    <string name="next_step">下 一 步</string>
+    <string name="shop_classify">店铺类型</string>
+    <string name="business_area">经营范围</string>
+    <string name="shop_introduction">店铺简介</string>
+    <string name="commit_apply">提 交 申 请</string>
+    <string name="apply_shop">申请成为商家</string>
+    <string name="apply_done">已提交申请</string>
+    <string name="apply_done_hint">您已成功提交申请，悠悠团队会在一个工作日内和您联系</string>
 
     <!-- select photo stings used-->
     <string name="select_photo">选择图片</string>

@@ -2,31 +2,80 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dreamspace.uucampusseller" >
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".ui.MainActivity"
-            android:label="@string/app_name" >
+        <activity android:name=".ui.activity.Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <!-- phote picker-->
         <activity android:name=".widget.photopicker.SelectPhotoActivity"/>
         <activity android:name=".widget.photopicker.PhotoPreviewActivity"/>
+
         <!-- goods-->
         <activity android:name=".ui.activity.Goods.EditGoodInfoAct"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ui.activity.Goods.EditGoodLabelAct"
             android:windowSoftInputMode="stateHidden"/>
+
+        <!-- register-->
+        <activity android:name=".ui.activity.Login.RegisterActivity"
+            android:label="注册"/>
+        <activity android:name=".ui.activity.Login.RegisterSucceedActivity"
+            android:label="注册成功"/>
+        <activity android:name=".ui.activity.Login.FindBackActivity"
+            android:label="重新设置密码"/>
+        <activity
+            android:name=".ui.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+
+        <!-- order-->
+        <activity android:name=".ui.activity.order.OrderDetailActivity"
+            android:label="@string/order_detail"/>
+
+        <!-- apply shop-->
+        <activity android:name=".ui.activity.order.ApplyShopHintActivity"
+            android:label="@string/app_name"/>
+        <activity android:name=".ui.activity.order.ApplyShopFirstActivity"
+            android:label="@string/apply_shop"/>
+        <activity android:name=".ui.activity.order.ApplyShopSecondActivity"
+            android:label="@string/apply_shop"/>
+        <activity android:name=".ui.activity.order.ApplyShopDoneActivity"
+            android:label="@string/apply_done"/>
+
+        <!-- personal-->
+        <activity android:name=".ui.activity.Personal.InfoChangeAct"
+            android:label="编辑店铺资料"/>
+        <activity android:name=".ui.activity.Personal.AliPayAct"
+            android:label="绑定支付宝"/>
+        <activity android:name=".ui.activity.Personal.AliPayWaitAct"
+            android:label="绑定支付宝"/>
+        <activity android:name=".ui.activity.Personal.AliPayDoneAct"
+            android:label="绑定支付宝"/>
+        <activity android:name=".ui.activity.Personal.DirectionAct"
+            android:label="使用说明"/>
+        <activity android:name=".ui.activity.Personal.SettingAct"
+            android:label="设置"/>
+        <activity android:name=".ui.activity.Personal.AboutAct"
+            android:label="关于"/>
+        <activity android:name=".ui.activity.Personal.FeedBackAct"
+            android:label="意见反馈"/>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
 </manifest>

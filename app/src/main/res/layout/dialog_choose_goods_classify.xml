@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/button_background_selectable"
+            android:background="@drawable/button_white_background_selectable"
             android:text="@string/ensure"
             android:textSize="18sp"
             android:textColor="@color/custom_text" />
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="18sp"
-            android:background="@drawable/button_background_selectable"
+            android:background="@drawable/button_white_background_selectable"
             android:text="@string/cancel"
             android:textColor="@color/custom_text" />
     </LinearLayout>

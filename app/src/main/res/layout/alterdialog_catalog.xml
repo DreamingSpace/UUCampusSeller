@@ -51,7 +51,7 @@
             android:id="@+id/cancel_ll"
             android:layout_weight="1"
             android:gravity="center"
-            android:background="@drawable/button_background_selectable"
+            android:background="@drawable/button_white_background_selectable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
@@ -74,7 +74,7 @@
             android:id="@+id/confirm_ll"
             android:layout_weight="1"
             android:gravity="center"
-            android:background="@drawable/button_background_selectable"
+            android:background="@drawable/button_white_background_selectable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView

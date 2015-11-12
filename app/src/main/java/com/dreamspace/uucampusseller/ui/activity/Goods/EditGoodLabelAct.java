@@ -21,7 +21,7 @@ import com.dreamspace.uucampusseller.model.CreateGoodReq;
 import com.dreamspace.uucampusseller.model.CreateGoodRes;
 import com.dreamspace.uucampusseller.model.Description;
 import com.dreamspace.uucampusseller.model.DescriptionItem;
-import com.dreamspace.uucampusseller.model.QnRes;
+import com.dreamspace.uucampusseller.model.api.QnRes;
 import com.dreamspace.uucampusseller.model.UpdateGoodReq;
 import com.dreamspace.uucampusseller.ui.MainActivity;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;

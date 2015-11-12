@@ -17,7 +17,6 @@ public abstract class BasisAdapter<T, K> extends BaseAdapter {
     private Context mContext;
     private Class<K> classType;
 
-
     public void setmEntities(List<T> mEntities) {
         this.mEntities = mEntities;
     }

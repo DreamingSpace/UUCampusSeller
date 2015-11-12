@@ -39,7 +39,7 @@
         android:layout_height="wrap_content">
         <LinearLayout
             android:id="@+id/new_catalog_cancel_ll"
-            android:background="@drawable/button_background_selectable"
+            android:background="@drawable/button_white_background_selectable"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_width="match_parent"
@@ -62,7 +62,7 @@
 
         <LinearLayout
             android:id="@+id/new_catalog_confirm_ll"
-            android:background="@drawable/button_background_selectable"
+            android:background="@drawable/button_white_background_selectable"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_width="match_parent"

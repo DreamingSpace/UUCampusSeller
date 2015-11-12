@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.dreamspace.uucampusseller.R;
 import com.dreamspace.uucampusseller.common.utils.PreferenceUtils;
 import com.dreamspace.uucampusseller.ui.activity.Goods.EditGoodInfoAct;
+import com.dreamspace.uucampusseller.ui.activity.order.ApplyShopHintActivity;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
 
     private List<Fragment> mFragments = new ArrayList<Fragment>();
     private List<LinearLayout> mLinearLayouts = new ArrayList<LinearLayout>();
-    private FragmentPagerAdapter mAdapter;
+
     private int currentIndex = 0;
 
     @Override
@@ -68,12 +69,22 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
     }
 
     private void initDates() {
+
+        //测试
+       // access_token存放
+//        PreferenceUtils.putString(this.getApplicationContext(),
+//                PreferenceUtils.Key.ACCESS,"e75d1024-8155-11e5-a16f-00163e021195");// aae889e0-82d4-11e5-bd1c-00163e021195
+//
+//        TLog.i("acces_token:",PreferenceUtils.getString(this.getApplicationContext(), PreferenceUtils.Key.ACCESS));
+
         OrderFragment orderFragment = new OrderFragment();
         GoodsFragment goodsFragment = new GoodsFragment();
         PersonFragment personFragment = new PersonFragment();
         mFragments.add(orderFragment);
         mFragments.add(goodsFragment);
         mFragments.add(personFragment);
+
+        FragmentPagerAdapter mAdapter;
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -93,15 +104,15 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
 
             @Override
             public void onPageSelected(int position) {
-                switch (position){
+                switch (position) {
                     case 0:
-                        currentIndex =0;
+                        currentIndex = 0;
                         break;
                     case 1:
-                        currentIndex =1;
+                        currentIndex = 1;
                         break;
                     case 2:
-                        currentIndex =2;
+                        currentIndex = 2;
                         break;
                 }
                 invalidateOptionsMenu(); //重新加载menu item
@@ -129,7 +140,7 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem scanCode = menu.findItem(R.id.scan_code_confirm);
+        MenuItem scanCode = menu.findItem(R.id.scan_ensure);
         MenuItem addGood = menu.findItem(R.id.add_good);
         switch (currentIndex){  //根据fragment的移动，选择相应的菜单栏
             case 0:
@@ -157,16 +168,16 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //扫码确认
-        if (id == R.id.scan_code_confirm) {
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.scan_ensure) {
+            readyGo(ApplyShopHintActivity.class);
             return true;
         }
         //添加商品
-        else if(id == R.id.add_good){
+        else if(id == R.id.add_good) {
             Bundle bundle = new Bundle();
-            bundle.putInt(EditGoodInfoAct.IN_WAY,EditGoodInfoAct.IN_FROM_CRETAE);
-            readyGo(EditGoodInfoAct.class,bundle);
-            return true;
+            bundle.putInt(EditGoodInfoAct.IN_WAY, EditGoodInfoAct.IN_FROM_CRETAE);
+            readyGo(EditGoodInfoAct.class, bundle);
         }
 
         return super.onOptionsItemSelected(item);
