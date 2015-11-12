@@ -12,7 +12,6 @@ import com.dreamspace.uucampusseller.model.GroupCreateRes;
 import com.dreamspace.uucampusseller.model.GroupDeleteReq;
 import com.dreamspace.uucampusseller.model.GroupDeleteRes;
 import com.dreamspace.uucampusseller.model.LabelRes;
-import com.dreamspace.uucampusseller.model.api.QnRes;
 import com.dreamspace.uucampusseller.model.SearchGoodsRes;
 import com.dreamspace.uucampusseller.model.UpdateGoodReq;
 import com.dreamspace.uucampusseller.model.api.CheckUpdateRes;
@@ -25,6 +24,7 @@ import com.dreamspace.uucampusseller.model.api.GetShopOrderDetailRes;
 import com.dreamspace.uucampusseller.model.api.GetShopOrderListRes;
 import com.dreamspace.uucampusseller.model.api.LoginReq;
 import com.dreamspace.uucampusseller.model.api.LoginRes;
+import com.dreamspace.uucampusseller.model.api.QnRes;
 import com.dreamspace.uucampusseller.model.api.RegisterReq;
 import com.dreamspace.uucampusseller.model.api.RegisterRes;
 import com.dreamspace.uucampusseller.model.api.ResetReq;
@@ -39,7 +39,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import retrofit.http.DELETE;
 import retrofit.Callback;
 import retrofit.client.Response;
 import retrofit.http.Body;
@@ -62,6 +61,7 @@ public interface UUService {
         String value();
     }
 
+//商品
     @POST("/goods/")
     void createGood(@Body CreateGoodReq goodReq, Callback<CreateGoodRes> cb);
 
@@ -102,7 +102,7 @@ public interface UUService {
     @POST("/auth/code/")
     void sendVerifyCode(@Body SendVerifyReq req, Callback<Response> cb);
 
-    //用户
+//用户
     //创建用户访问凭证(登陆)
     @POST("/auth/login/")
     void createAccessToken(@Body LoginReq req, Callback<LoginRes> cb);
@@ -119,7 +119,7 @@ public interface UUService {
     @GET("/user/")
     void getUserInfo(Callback<UserInfoRes> cb);
 
-    //店铺
+//店铺
     //获取自己的店铺状态
     @GET("/shop/status/")
     void getShopStatus(Callback<ShopStatusRes> cb);
@@ -134,7 +134,7 @@ public interface UUService {
     void getShopInfo(@Path("shop_id") String shop_id, Callback<ShopInfoRes> cb);
 
 
-    //订单
+//订单
     //商家每个状态的订单状态和订单数量
     @GET("/shop/orders/status/")
     void getOrderStatus(Callback<GetOrderStatusRes> cb);
@@ -147,7 +147,7 @@ public interface UUService {
     @GET("/shop/order/{order_id}/")
     void getShopOrderDetail(@Path("order_id")String order_id,Callback<GetShopOrderDetailRes>cb);
 
-    //意见、报告、更新等
+//意见、报告、更新等
     //意见提交
     @POST("/suggestion/")
     void commitSuggestion(@Body ContentReq req,Callback<CommitSuggestionRes>cb);

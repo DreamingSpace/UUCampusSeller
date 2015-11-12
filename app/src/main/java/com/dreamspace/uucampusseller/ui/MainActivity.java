@@ -2,7 +2,7 @@ package com.dreamspace.uucampusseller.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -84,8 +84,8 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
         mFragments.add(goodsFragment);
         mFragments.add(personFragment);
 
-        FragmentPagerAdapter mAdapter;
-        mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
+        FragmentStatePagerAdapter mAdapter;
+        mAdapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
                 return mFragments.get(position);

@@ -99,8 +99,8 @@
     <!-- order-->
     <string name="order_time">下单时间</string>
     <string name="pay_time">付款时间</string>
-    <string name="done_time">完成时间</string>
-    <string name="drawback_time">申请退款时间</string>
+    <string name="done_time">消费时间</string>
+    <string name="drawback_time">退款时间</string>
     <string name="order_detail">订单详情</string>
     <string name="order_number">订单编号</string>
     <string name="phone_number">手机号码</string>

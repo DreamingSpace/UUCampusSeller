@@ -106,6 +106,7 @@ public class OrderShowFragment extends BaseLazyFragment {
                 Bundle bundle = new Bundle();
                 order_id = onItemPicked((OrderItem) mAdapter.getItem(position), position);
                 TLog.i("INFO", "position:  " + position + " order_id:" + order_id);
+                bundle.putInt(OrderDetailActivity.EXTRA_TAB_POSITION,tabPosition);
                 bundle.putString(OrderDetailActivity.EXTRA_ORDER_ID, order_id);
                 readyGo(OrderDetailActivity.class, bundle);
             }
@@ -127,7 +128,7 @@ public class OrderShowFragment extends BaseLazyFragment {
                 status=0;
                 break;
         }
-        Log.i("order tab:", SharedData.orderTabs[tabPosition]+" status:"+status);
+        Log.i("order tab:", SharedData.orderTabs[tabPosition] + " status:" + status);
     }
 
     public void loadingInitData() {
@@ -169,7 +170,7 @@ public class OrderShowFragment extends BaseLazyFragment {
         loadingDataByPageStatus(++page, status, new OnRefreshListener() {
             @Override
             public void onFinish(List mEntities) {
-                refreshDate(mEntities,ADD);
+                refreshDate(mEntities, ADD);
                 onPullUpFinished();
             }
 

@@ -33,12 +33,12 @@ public class OrderFragment extends BaseLazyFragment {
     @Bind(R.id.order_view_pager)
     ViewPager mViewPager;
     private boolean isFragmentDestroy = false;
-    private List<String> items = new ArrayList<String>();
+
     public static final String ORDER_TAB = "tab_index";
 
     @Override
     protected void onFirstUserVisible() {
-
+        initTabs();
     }
 
     @Override
@@ -58,7 +58,7 @@ public class OrderFragment extends BaseLazyFragment {
 
     @Override
     protected void initViewsAndEvents() {
-        initTabs();
+
     }
 
     @Override
@@ -67,19 +67,20 @@ public class OrderFragment extends BaseLazyFragment {
     }
 
     private void initTabs() {
+        final List<String> items = new ArrayList<String>();
         if (NetUtils.isNetworkConnected(getActivity().getApplicationContext())) {
             ApiManager.getService(getActivity().getApplicationContext()).getOrderStatus(new Callback<GetOrderStatusRes>() {
                 @Override
                 public void success(GetOrderStatusRes getOrderStatusRes, Response response) {
                     TLog.i("success:", response.getBody() + "" + response.getReason());
-                    if (!isFragmentDestroy) {
+//                    if (!isFragmentDestroy) {
                         items.add(SharedData.orderTabs[0] + "(" + getOrderStatusRes.getOrder_status_1() + ")");
                         items.add(SharedData.orderTabs[1] + "(" + getOrderStatusRes.getOrder_status_2() + ")");
-                        items.add(SharedData.orderTabs[2] + "(" + getOrderStatusRes.getOrder_status_0() + ")");
+                        items.add(SharedData.orderTabs[2] + "(" + getOrderStatusRes.getOrder_status__1() + ")");
                         items.add(SharedData.orderTabs[3] + "(" + getOrderStatusRes.getOrder_status_0() + ")");
-                        initFragment();
+                        initFragment(items);
                         TLog.i("items:", items.toString());
-                    }
+//                    }
                 }
 
                 @Override
@@ -93,7 +94,7 @@ public class OrderFragment extends BaseLazyFragment {
         }
     }
 
-    private void initFragment() {
+    private void initFragment(List<String> items) {
         FragmentPagerItems pages = new FragmentPagerItems(getActivity());
         for (String item : items) {
             pages.add(FragmentPagerItem.of(item, OrderShowFragment.class));
@@ -107,6 +108,8 @@ public class OrderFragment extends BaseLazyFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+
         isFragmentDestroy = true;
     }
+
 }
