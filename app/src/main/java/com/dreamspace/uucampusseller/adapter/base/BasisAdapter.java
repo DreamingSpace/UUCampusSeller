@@ -21,9 +21,6 @@ public abstract class BasisAdapter<T, K> extends BaseAdapter {
         this.mEntities = mEntities;
     }
 
-    public void addEntities(List<T> mEntities){
-        this.mEntities.addAll(mEntities);
-    }
     public BasisAdapter(Context mContext, List<T> mEntities, Class<K> classType) {
         this.mContext = mContext;
         this.mEntities = mEntities;
@@ -96,8 +93,11 @@ public abstract class BasisAdapter<T, K> extends BaseAdapter {
         return mContext;
     }
 
+    public void addEntities(List<T> mEntities){
+        this.mEntities.addAll(mEntities);
+    }
 
     public List<T> getmEntities(){
-        return  mEntities;
+        return mEntities;
     }
 }

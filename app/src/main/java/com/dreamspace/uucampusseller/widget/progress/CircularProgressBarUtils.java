@@ -15,6 +15,7 @@
  */
 
 package com.dreamspace.uucampusseller.widget.progress;
+
 import android.animation.ValueAnimator;
 
 import static java.lang.Math.min;

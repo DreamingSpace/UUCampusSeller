@@ -423,7 +423,7 @@ public class CircularProgressDrawable extends Drawable
                 mMinSweepAngle = 20;
                 mMaxSweepAngle = 300;
             } else {
-                mColors = new int[]{context.getResources().getColor(R.color.cpb_default_color)};
+                mColors = new int[]{context.getResources().getColor(R.color.app_theme_color)};
                 mMinSweepAngle = context.getResources().getInteger(R.integer.cpb_default_min_sweep_angle);
                 mMaxSweepAngle = context.getResources().getInteger(R.integer.cpb_default_max_sweep_angle);
             }

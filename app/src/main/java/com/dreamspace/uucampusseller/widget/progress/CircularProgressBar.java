@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.dreamspace.uucampusseller.widget.progress;
 
 import android.content.Context;
@@ -23,6 +24,7 @@ import android.util.AttributeSet;
 import android.widget.ProgressBar;
 
 import com.dreamspace.uucampusseller.R;
+
 
 /**
  * Created by castorflex on 11/10/13.
@@ -48,8 +50,7 @@ public class CircularProgressBar extends ProgressBar {
     Resources res = context.getResources();
     TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircularProgressBar, defStyle, 0);
 
-
-    final int color = a.getColor(R.styleable.CircularProgressBar_cpb_color, res.getColor(R.color.cpb_default_color));
+    final int color = a.getColor(R.styleable.CircularProgressBar_cpb_color, res.getColor(R.color.app_theme_color));
     final float strokeWidth = a.getDimension(R.styleable.CircularProgressBar_cpb_stroke_width, res.getDimension(R.dimen.cpb_default_stroke_width));
     final float sweepSpeed = a.getFloat(R.styleable.CircularProgressBar_cpb_sweep_speed, Float.parseFloat(res.getString(R.string.cpb_default_sweep_speed)));
     final float rotationSpeed = a.getFloat(R.styleable.CircularProgressBar_cpb_rotation_speed, Float.parseFloat(res.getString(R.string.cpb_default_rotation_speed)));
@@ -66,11 +67,11 @@ public class CircularProgressBar extends ProgressBar {
 
     Drawable indeterminateDrawable;
     CircularProgressDrawable.Builder builder = new CircularProgressDrawable.Builder(context)
-            .sweepSpeed(sweepSpeed)
-            .rotationSpeed(rotationSpeed)
-            .strokeWidth(strokeWidth)
-            .minSweepAngle(minSweepAngle)
-            .maxSweepAngle(maxSweepAngle);
+        .sweepSpeed(sweepSpeed)
+        .rotationSpeed(rotationSpeed)
+        .strokeWidth(strokeWidth)
+        .minSweepAngle(minSweepAngle)
+        .maxSweepAngle(maxSweepAngle);
 
     if (colors != null && colors.length > 0)
       builder.colors(colors);
@@ -82,10 +83,10 @@ public class CircularProgressBar extends ProgressBar {
   }
 
   private CircularProgressDrawable checkIndeterminateDrawable() {
-    Drawable ret = getIndeterminateDrawable();
-    if (ret == null || !(ret instanceof CircularProgressDrawable))
-      throw new RuntimeException("The drawable is not a CircularProgressDrawable");
-    return (CircularProgressDrawable) ret;
+     Drawable ret = getIndeterminateDrawable();
+     if (ret == null || !(ret instanceof CircularProgressDrawable))
+        throw new RuntimeException("The drawable is not a CircularProgressDrawable");
+     return (CircularProgressDrawable) ret;
   }
 
   public void progressiveStop() {

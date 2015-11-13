@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/custom_toolbar"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/content_ll"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/edit_good_content_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/good_image_iv"
+                        android:src="@color/orange"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="42dp"
+                        android:layout_marginRight="42dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp" />
+                    <TextView
+                        android:text="@string/click_add_image"
+                        android:textColor="@color/black_opaque"
+                        android:textSize="16sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <View
+                    android:background="@color/divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <ImageView
+                        android:src="@drawable/add_product_icon_name"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="@string/good_name"
+                        android:textColor="@color/near_black"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/good_name_et"
+                        android:background="@null"
+                        android:textColor="@color/near_black"
+                        android:textSize="14sp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="30dp"
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <View
+                    android:background="@color/divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+                        <ImageView
+                            android:src="@drawable/add_product_icon_price"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:text="@string/good_org_price"
+                            android:textSize="14sp"
+                            android:textColor="@color/near_black"
+                            android:layout_marginLeft="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <EditText
+                            android:id="@+id/good_org_price_et"
+                            android:background="@null"
+                            android:textSize="14sp"
+                            android:textColor="@color/near_black"
+                            android:inputType="numberDecimal"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="8dp"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent" />
+                        <TextView
+                            android:text="@string/good_yoyo_price"
+                            android:textSize="14sp"
+                            android:textColor="@color/near_black"
+                            android:layout_marginLeft="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <EditText
+                            android:id="@+id/yoyo_price_et"
+                            android:background="@null"
+                            android:textSize="14sp"
+                            android:textColor="@color/near_black"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:inputType="numberDecimal"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+                    <!--<LinearLayout-->
+                        <!--android:orientation="horizontal"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="40dp">-->
+                        <!--<ImageView-->
+                            <!--android:visibility="invisible"-->
+                            <!--android:src="@drawable/add_product_icon_price"-->
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--android:layout_marginLeft="20dp"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content" />-->
+                        <!--<TextView-->
+                            <!--android:text="@string/good_yoyo_price"-->
+                            <!--android:textSize="14sp"-->
+                            <!--android:textColor="@color/near_black"-->
+                            <!--android:layout_marginLeft="10dp"-->
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content" />-->
+                        <!--<EditText-->
+                            <!--android:id="@+id/yoyo_price_et"-->
+                            <!--android:background="@null"-->
+                            <!--android:textSize="14sp"-->
+                            <!--android:textColor="@color/near_black"-->
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--android:gravity="center_vertical"-->
+                            <!--android:inputType="numberDecimal"-->
+                            <!--android:layout_marginLeft="8dp"-->
+                            <!--android:layout_marginRight="15dp"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent" />-->
+                    <!--</LinearLayout>-->
+                </LinearLayout>
+
+                <View
+                    android:background="@color/divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <ImageView
+                        android:src="@drawable/add_product_icon_discount"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="@string/good_discount"
+                        android:textSize="14sp"
+                        android:textColor="@color/near_black"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/good_discount_et"
+                        android:background="@null"
+                        android:hint="@string/good_discount_hint"
+                        android:textSize="14sp"
+                        android:textColor="@color/near_black"
+                        android:inputType="numberDecimal"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <View
+                    android:background="@color/divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <ImageView
+                        android:src="@drawable/add_product_icon_classify"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="@string/good_catalog2"
+                        android:textSize="14sp"
+                        android:textColor="@color/near_black"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/good_catalog_tv"
+                        android:background="@null"
+                        android:hint="@string/good_catalog_hint"
+                        android:textSize="14sp"
+                        android:textColor="@color/near_black"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <View
+                    android:background="@color/divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"/>
+
+                <LinearLayout
+                    android:id="@+id/keyword_ll"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <ImageView
+                        android:src="@drawable/add_product_icon_label"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="@string/good_key_word"
+                        android:textSize="14sp"
+                        android:textColor="@color/near_black"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/good_key_word_tv"
+                        android:background="@null"
+                        android:hint="@string/key_word_hint"
+                        android:textSize="14sp"
+                        android:textColor="@color/near_black"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/good_delete_btn"
+                android:text="@string/delete_good"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:background="@drawable/button_round"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

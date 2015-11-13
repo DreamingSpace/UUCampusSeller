@@ -40,9 +40,13 @@ public class OrderDetailActivity extends AbsActivity{
     TextView mDiscountTv;
     @Bind(R.id.order_detail_memorandum_tv)
     TextView mMemorandumTv;
+    @Bind(R.id.order_detail_tab_tv)
+    TextView mTabTimeTv;
 
     public static final String EXTRA_ORDER_ID="order_id";
+    public static final String EXTRA_TAB_POSITION="tab_position";
     private String order_id=null;
+    private int tab_position=0;
 
     @Override
     protected int getContentView() {
@@ -52,7 +56,8 @@ public class OrderDetailActivity extends AbsActivity{
     @Override
     protected void prepareDatas() {
         order_id = getIntent().getExtras().getString(EXTRA_ORDER_ID);
-        TLog.i("order_id:",order_id);
+        tab_position=getIntent().getExtras().getInt(EXTRA_TAB_POSITION);
+        TLog.i("order_id:",order_id+" tab position:"+tab_position);
     }
 
     @Override
@@ -93,5 +98,20 @@ public class OrderDetailActivity extends AbsActivity{
         mPayTv.setText(" : "+String.valueOf(getShopOrderDetailRes.getTotal_price()));
         mDiscountTv.setText(" : "+String.valueOf(getShopOrderDetailRes.getTotal_dicount()));
         mMemorandumTv.setText(" : "+getShopOrderDetailRes.getGood().getLabel());
+
+        switch (tab_position){
+            case 0:
+                mTabTimeTv.setText(getResources().getText(R.string.order_time));
+                break;
+            case 1:
+                mTabTimeTv.setText(getResources().getText(R.string.pay_time));
+                break;
+            case 2:
+                mTabTimeTv.setText(getResources().getText(R.string.done_time));
+                break;
+            case 3:
+                mTabTimeTv.setText(getResources().getText(R.string.drawback_time));
+                break;
+        }
     }
 }

@@ -187,4 +187,9 @@ public class PersonFragment extends BaseFragment {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
+
+    @Override
+    protected View getLoadingTargetView() {
+        return null;
+    }
 }
