@@ -35,7 +35,7 @@ public class OrderItemAdapter extends BasisAdapter<OrderItem, OrderItemAdapter.v
         holder.time.setText(" : "+entity.getTime());
         CommonUtils.showImageWithGlide(getmContext(), holder.image, entity.getGood().getImage());
         holder.name.setText(entity.getGood().getName());
-        holder.price.setText(" : "+String.valueOf(entity.getTotal_price()));
+        holder.price.setText(" : "+String.valueOf(entity.getTotal_original()));
         holder.number.setText(" : "+String.valueOf(entity.getQuantity()));
         holder.phone.setText(" : "+entity.getBuyer().getPhone_num());
 

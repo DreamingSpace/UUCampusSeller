@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dreamspace.uucampusseller.R;
-import com.dreamspace.uucampusseller.common.utils.PreferenceUtils;
 import com.dreamspace.uucampusseller.ui.activity.Goods.EditGoodInfoAct;
 import com.dreamspace.uucampusseller.ui.activity.order.ApplyShopHintActivity;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;
@@ -44,9 +43,10 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
 
     @Override
     protected void prepareDatas() {
-        PreferenceUtils.putString(this,PreferenceUtils.Key.ACCESS,"4d06cc40-82e0-11e5-bd1c-00163e021195");
-        PreferenceUtils.putString(this,PreferenceUtils.Key.SHOP_ID,"5636f3cf90c49063a04cabb8");
-        PreferenceUtils.putString(this,PreferenceUtils.Key.CATEGORY,"旅游");
+//        PreferenceUtils.putString(this,PreferenceUtils.Key.ACCESS,"4d06cc40-82e0-11e5-bd1c-00163e021195");
+//        PreferenceUtils.putString(this,PreferenceUtils.Key.SHOP_ID,"5636f3cf90c49063a04cabb8");
+//        PreferenceUtils.putString(this,PreferenceUtils.Key.CATEGORY,"旅游");
+//        TLog.i("user login:", PreferenceUtils.getString(getApplicationContext(),PreferenceUtils.Key.ACCESS));
     }
 
     @Override

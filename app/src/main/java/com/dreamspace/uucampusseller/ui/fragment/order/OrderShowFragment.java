@@ -40,12 +40,13 @@ public class OrderShowFragment extends BaseLazyFragment {
 
     private int tabPosition = 0;
     private BasisAdapter mAdapter;
-    private int page=1;
-    private int status=1;
-    private String order_id=null;
+    private int page = 1;
+    private int status = 1;
+    private String order_id = null;
+    private boolean isFragDestroy = false;
 
-    public static final int LOAD=1;
-    public static final int ADD=2;
+    public static final int LOAD = 1;
+    public static final int ADD = 2;
 
 
     @Override
@@ -106,7 +107,7 @@ public class OrderShowFragment extends BaseLazyFragment {
                 Bundle bundle = new Bundle();
                 order_id = onItemPicked((OrderItem) mAdapter.getItem(position), position);
                 TLog.i("INFO", "position:  " + position + " order_id:" + order_id);
-                bundle.putInt(OrderDetailActivity.EXTRA_TAB_POSITION,tabPosition);
+                bundle.putInt(OrderDetailActivity.EXTRA_TAB_POSITION, tabPosition);
                 bundle.putString(OrderDetailActivity.EXTRA_ORDER_ID, order_id);
                 readyGo(OrderDetailActivity.class, bundle);
             }
@@ -114,29 +115,38 @@ public class OrderShowFragment extends BaseLazyFragment {
     }
 
     private void initStatus(int tabPosition) {
-        switch (tabPosition){
+        switch (tabPosition) {
             case 0:            //未付款
-                status=1;
+                status = 1;
                 break;
             case 1:           //未消费
-                status=2;
+                status = 2;
                 break;
             case 2:           //已完成
-                status=3;
+                status = 3;
                 break;
             case 3:           //退款
-                status=0;
+                status = 0;
                 break;
         }
         Log.i("order tab:", SharedData.orderTabs[tabPosition] + " status:" + status);
     }
 
     public void loadingInitData() {
+
+//        toggleShowLoading(true, getString(R.string.common_loading_message));
         if (NetUtils.isNetworkConnected(getActivity().getApplicationContext())) {
             ApiManager.getService(getActivity().getApplicationContext()).getShopOrderList(page, status, new Callback<GetShopOrderListRes>() {
                 @Override
                 public void success(GetShopOrderListRes getShopOrderListRes, Response response) {
-                    refreshDate(getShopOrderListRes.getOrders(),LOAD);
+                    if (!isFragDestroy) {
+                            if(getShopOrderListRes.getOrders()==null){
+//                                toggleShowEmpty(true, getString(R.string.common_empty_msg), null);
+                            }else {
+//                                toggleShowLoading(false,null);
+                                refreshDate(getShopOrderListRes.getOrders(), LOAD);
+                            }
+                    }
                 }
 
                 @Override
@@ -144,13 +154,13 @@ public class OrderShowFragment extends BaseLazyFragment {
                     showInnerError(error);
                 }
             });
-        }else{
+        } else {
             showNetWorkError();
         }
     }
 
-    public void refreshDate(List<OrderItem> mEntities,int type) {
-        switch (type){
+    public void refreshDate(List<OrderItem> mEntities, int type) {
+        switch (type) {
             case LOAD:
                 mAdapter.setmEntities(mEntities);
                 break;
@@ -182,19 +192,19 @@ public class OrderShowFragment extends BaseLazyFragment {
     }
 
     public void onPullDown() {  //下拉刷新，加载最新的
-        page=1;
-       loadingDataByPageStatus(page, status, new OnRefreshListener() {
-           @Override
-           public void onFinish(List mEntities) {
-               refreshDate(mEntities, LOAD);
-               onPullDownFinished();
-           }
+        page = 1;
+        loadingDataByPageStatus(page, status, new OnRefreshListener() {
+            @Override
+            public void onFinish(List mEntities) {
+                refreshDate(mEntities, LOAD);
+                onPullDownFinished();
+            }
 
-           @Override
-           public void onError() {
-               onPullDownFinished();
-           }
-       });
+            @Override
+            public void onError() {
+                onPullDownFinished();
+            }
+        });
     }
 
     public void onPullUpFinished() {
@@ -209,14 +219,14 @@ public class OrderShowFragment extends BaseLazyFragment {
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
-    void loadingDataByPageStatus(int page,int status,final OnRefreshListener onRefreshListener){
-        if(NetUtils.isNetworkConnected(getActivity().getApplicationContext())){
+    void loadingDataByPageStatus(int page, int status, final OnRefreshListener onRefreshListener) {
+        if (NetUtils.isNetworkConnected(getActivity().getApplicationContext())) {
             ApiManager.getService(getActivity().getApplicationContext()).getShopOrderList(page, status, new Callback<GetShopOrderListRes>() {
                 @Override
                 public void success(GetShopOrderListRes getShopOrderListRes, Response response) {
-                    if(getShopOrderListRes!=null){
+                    if (getShopOrderListRes != null) {
                         onRefreshListener.onFinish(getShopOrderListRes.getOrders());
-                    }else{
+                    } else {
                         showToast(response.getReason());
                         onRefreshListener.onError();
                     }
@@ -228,14 +238,19 @@ public class OrderShowFragment extends BaseLazyFragment {
                     showInnerError(error);
                 }
             });
-        }else{
+        } else {
             onRefreshListener.onError();
             showNetWorkError();
         }
     }
 
-    public interface RefreshTab{
-        public void refreshTab(int tabPosition,String tabNum);
+    public interface RefreshTab {
+        public void refreshTab(int tabPosition, String tabNum);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        isFragDestroy = true;
+    }
 }
