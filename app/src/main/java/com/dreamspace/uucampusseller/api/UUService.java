@@ -16,6 +16,7 @@ import com.dreamspace.uucampusseller.model.SearchGoodsRes;
 import com.dreamspace.uucampusseller.model.UpdateGoodReq;
 import com.dreamspace.uucampusseller.model.api.CheckUpdateRes;
 import com.dreamspace.uucampusseller.model.api.CommitSuggestionRes;
+import com.dreamspace.uucampusseller.model.api.ConsumeOrderReq;
 import com.dreamspace.uucampusseller.model.api.ContentReq;
 import com.dreamspace.uucampusseller.model.api.CreateShopReq;
 import com.dreamspace.uucampusseller.model.api.CreateShopRes;
@@ -146,6 +147,11 @@ public interface UUService {
     //商家获取订单详情
     @GET("/shop/order/{order_id}/")
     void getShopOrderDetail(@Path("order_id")String order_id,Callback<GetShopOrderDetailRes>cb);
+
+    //商家消费订单
+    @PUT("/shop/order/consume/")
+    void consumeOrder(@Body ConsumeOrderReq req,Callback<Response> cb);
+
 
 //意见、报告、更新等
     //意见提交

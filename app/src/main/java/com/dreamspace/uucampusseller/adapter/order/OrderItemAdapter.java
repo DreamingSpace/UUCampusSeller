@@ -1,4 +1,4 @@
-package com.dreamspace.uucampusseller.adapter.base.order;
+package com.dreamspace.uucampusseller.adapter.order;
 
 import android.content.Context;
 import android.content.Intent;

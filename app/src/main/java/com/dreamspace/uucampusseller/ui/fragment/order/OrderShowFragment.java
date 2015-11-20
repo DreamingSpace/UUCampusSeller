@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 
 import com.dreamspace.uucampusseller.R;
 import com.dreamspace.uucampusseller.adapter.base.BasisAdapter;
-import com.dreamspace.uucampusseller.adapter.base.order.OrderItemAdapter;
+import com.dreamspace.uucampusseller.adapter.order.OrderItemAdapter;
 import com.dreamspace.uucampusseller.api.ApiManager;
 import com.dreamspace.uucampusseller.common.SharedData;
 import com.dreamspace.uucampusseller.common.utils.NetUtils;
@@ -133,17 +133,16 @@ public class OrderShowFragment extends BaseLazyFragment {
     }
 
     public void loadingInitData() {
-
-//        toggleShowLoading(true, getString(R.string.common_loading_message));
+        toggleShowLoading(true, getString(R.string.common_loading_message));
         if (NetUtils.isNetworkConnected(getActivity().getApplicationContext())) {
             ApiManager.getService(getActivity().getApplicationContext()).getShopOrderList(page, status, new Callback<GetShopOrderListRes>() {
                 @Override
                 public void success(GetShopOrderListRes getShopOrderListRes, Response response) {
                     if (!isFragDestroy) {
-                            if(getShopOrderListRes.getOrders()==null){
-//                                toggleShowEmpty(true, getString(R.string.common_empty_msg), null);
+                            if(getShopOrderListRes.getOrders()!=null&&getShopOrderListRes.getOrders().size()==0){
+                                toggleShowEmpty(true, getString(R.string.common_empty_msg), null);
                             }else {
-//                                toggleShowLoading(false,null);
+                                toggleShowLoading(false,null);
                                 refreshDate(getShopOrderListRes.getOrders(), LOAD);
                             }
                     }

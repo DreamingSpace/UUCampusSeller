@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.dreamspace.uucampusseller.R;
 import com.dreamspace.uucampusseller.ui.activity.Goods.EditGoodInfoAct;
-import com.dreamspace.uucampusseller.ui.activity.order.ApplyShopHintActivity;
+import com.dreamspace.uucampusseller.ui.activity.order.CodeScanningActivity;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
 
     @Override
     protected void prepareDatas() {
-//        PreferenceUtils.putString(this,PreferenceUtils.Key.ACCESS,"4d06cc40-82e0-11e5-bd1c-00163e021195");
+//        PreferenceUtils.putString(this, PreferenceUtils.Key.ACCESS, "4d06cc40-82e0-11e5-bd1c-00163e021195");
 //        PreferenceUtils.putString(this,PreferenceUtils.Key.SHOP_ID,"5636f3cf90c49063a04cabb8");
 //        PreferenceUtils.putString(this,PreferenceUtils.Key.CATEGORY,"旅游");
 //        TLog.i("user login:", PreferenceUtils.getString(getApplicationContext(),PreferenceUtils.Key.ACCESS));
@@ -170,8 +170,8 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.scan_ensure) {
-            readyGo(ApplyShopHintActivity.class);
-            return true;
+//            readyGo(ApplyShopHintActivity.class);
+            readyGo(CodeScanningActivity.class);
         }
         //添加商品
         else if(id == R.id.add_good) {
