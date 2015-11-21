@@ -141,11 +141,6 @@ public class LoginActivity extends AbsActivity {
     //保存用户信息到本地
     private void saveUserInfo(UserInfoRes userInfoRes){
         SharedData.user = userInfoRes;
-//        //这部分还需要修改~
-//        PreferenceUtils.putString(getApplicationContext(),PreferenceUtils.Key.AVATAR,userInfoRes.getImage());
-//        PreferenceUtils.putString(getApplicationContext(),PreferenceUtils.Key.ACCOUNT,userInfoRes.getName());
-//        //PreferenceUtils.putString(getApplicationContext(),PreferenceUtils.Key.SEX,userInfoRes.getSex());
-//        PreferenceUtils.putString(getApplicationContext(), PreferenceUtils.Key.PHONE, LoginUserName.getText().toString());
     }
 
     //输入有效性判断
