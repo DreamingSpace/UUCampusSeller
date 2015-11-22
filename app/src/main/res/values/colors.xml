@@ -44,4 +44,9 @@
     <color name="no_goods_text_color">#333333</color>
     <color name="wheelview_center_color">#43aa9f</color>
     <color name="price_text_color">#f15353</color>
+
+    <!-- scan code-->
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
 </resources>

@@ -63,6 +63,8 @@ public class LoginActivity extends AbsActivity {
         loginPageLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                测试
+//                readyGoThenKill(MainActivity.class);
                 String phoneNum = LoginUserName.getText().toString();
                 String password = LoginPwd.getText().toString();
                 if(isValid(phoneNum,password)){
@@ -100,6 +102,7 @@ public class LoginActivity extends AbsActivity {
                     PreferenceUtils.putString(LoginActivity.this.getApplicationContext(),
                             PreferenceUtils.Key.ACCESS, loginRes.getAccess_token());
                     ApiManager.clear();
+
                     getUserInfo();
                 }
 
