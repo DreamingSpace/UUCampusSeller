@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dreamspace.uucampusseller.R;
@@ -24,15 +25,26 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
 
     @Bind(R.id.homepage_view_pager)
     ViewPager mViewPager;
-    @Bind(R.id.homepage_order_linear_layout)
-    LinearLayout mOrder;
-    @Bind(R.id.homepage_goods_linear_layout)
-    LinearLayout mGoods;
-    @Bind(R.id.homepage_person_linear_layout)
-    LinearLayout mPerson;
+    @Bind(R.id.order_unselect_ll)
+    LinearLayout orderUnselectLl;
+    @Bind(R.id.order_select_ll)
+    LinearLayout orderSelectLl;
+    @Bind(R.id.good_unselect_ll)
+    LinearLayout goodUnselectLl;
+    @Bind(R.id.good_select_ll)
+    LinearLayout goodSelectLl;
+    @Bind(R.id.personal_unselect_ll)
+    LinearLayout personalUnselectLl;
+    @Bind(R.id.personal_select_ll)
+    LinearLayout personalSelectLl;
+    @Bind(R.id.order_page_rl)
+    RelativeLayout orderRl;
+    @Bind(R.id.good_rl)
+    RelativeLayout goodRl;
+    @Bind(R.id.personal_rl)
+    RelativeLayout personalRl;
 
     private List<Fragment> mFragments = new ArrayList<Fragment>();
-    private List<LinearLayout> mLinearLayouts = new ArrayList<LinearLayout>();
 
     private int currentIndex = 0;
 
@@ -57,15 +69,12 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
     }
 
     private void initView() {
-        mLinearLayouts.add(mOrder);
-        mLinearLayouts.add(mGoods);
-        mLinearLayouts.add(mPerson);
-
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         TextView titleTv = (TextView) mToolBar.findViewById(R.id.custom_title_tv);
         titleTv.setText(getString(R.string.app_name));
+        initBottomBar();
     }
 
     private void initDates() {
@@ -100,6 +109,15 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if (position < 2) {
+                    if (position == 0) {
+                        orderPageIconSetAlpha(1 - positionOffset);
+                        goodPageIconSetAlpha(positionOffset);
+                    } else if (position == 1) {
+                        goodPageIconSetAlpha(1 - positionOffset);
+                        personalPageIconSetAlpha(positionOffset);
+                    }
+                }
             }
 
             @Override
@@ -126,9 +144,9 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
     }
 
     private void initListener() {
-        mOrder.setOnClickListener(this);
-        mGoods.setOnClickListener(this);
-        mPerson.setOnClickListener(this);
+        orderRl.setOnClickListener(this);
+        goodRl.setOnClickListener(this);
+        personalRl.setOnClickListener(this);
     }
 
     @Override
@@ -186,15 +204,45 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.homepage_order_linear_layout:
+            case R.id.order_page_rl:
+                orderPageIconSetAlpha(1);
+                goodPageIconSetAlpha(0);
+                personalPageIconSetAlpha(0);
                 mViewPager.setCurrentItem(0,false);
                 break;
-            case R.id.homepage_goods_linear_layout:
+            case R.id.good_rl:
                 mViewPager.setCurrentItem(1,false);
+                orderPageIconSetAlpha(0);
+                goodPageIconSetAlpha(1);
+                personalPageIconSetAlpha(0);
                 break;
-            case R.id.homepage_person_linear_layout:
+            case R.id.personal_rl:
                 mViewPager.setCurrentItem(2,false);
+                orderPageIconSetAlpha(0);
+                goodPageIconSetAlpha(0);
+                personalPageIconSetAlpha(1);
                 break;
         }
+    }
+
+    private void initBottomBar(){
+        orderUnselectLl.setAlpha(0);
+        goodSelectLl.setAlpha(0);
+        personalSelectLl.setAlpha(0);
+    }
+
+    private void orderPageIconSetAlpha(float alpha){
+        orderSelectLl.setAlpha(alpha);
+        orderUnselectLl.setAlpha(1 - alpha);
+    }
+
+    private void goodPageIconSetAlpha(float alpha){
+        goodSelectLl.setAlpha(alpha);
+        goodUnselectLl.setAlpha(1 - alpha);
+    }
+
+    private void personalPageIconSetAlpha(float alpha){
+        personalSelectLl.setAlpha(alpha);
+        personalUnselectLl.setAlpha(1 - alpha);
     }
 }
