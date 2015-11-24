@@ -2,11 +2,8 @@ package com.dreamspace.uucampusseller.ui;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,7 +21,7 @@ import com.dreamspace.uucampusseller.ui.activity.Personal.DirectionAct;
 import com.dreamspace.uucampusseller.ui.activity.Personal.FeedBackAct;
 import com.dreamspace.uucampusseller.ui.activity.Personal.InfoChangeAct;
 import com.dreamspace.uucampusseller.ui.activity.Personal.SettingAct;
-import com.dreamspace.uucampusseller.ui.base.BaseFragment;
+import com.dreamspace.uucampusseller.ui.base.BaseLazyFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -36,7 +33,7 @@ import retrofit.client.Response;
 /**
  * Created by wufan on 2015/10/18.
  */
-public class PersonFragment extends BaseFragment {
+public class PersonFragment extends BaseLazyFragment {
     @Bind(R.id.personal_relative1)
     RelativeLayout personalRelative1;
     @Bind(R.id.personal_relative2)
@@ -53,39 +50,32 @@ public class PersonFragment extends BaseFragment {
     CircleImageView personalIron;
     @Bind(R.id.person_call_telephone)
     TextView personCallTelephone;
+    @Bind(R.id.personal_name)
+    TextView personalName;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        Log.d("TestData", "create");
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
+    protected void onFirstUserVisible() {
+        getShopStatus();
     }
 
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        //解决从诸如修改店铺信息界面返回之后的界面需要刷新的问题
-        if (isVisibleToUser) {
-            Log.d("TestData", "holoholo~");
-        }
+    protected void onUserVisible() {
+        //修改店铺资料后重新刷新，获取数据
+        getShopStatus();
     }
 
     @Override
-    public int getLayoutId() {
-        return R.layout.fragment_person;
-    }
-
-    @Override
-    public void initViews(View view) {
+    protected void initViewsAndEvents() {
         initListeners();
     }
 
     @Override
-    public void initDatas() {
-        //获取商家店铺状态和信息
-        getShopStatus();
+    protected int getContentViewLayoutID() {
+        return R.layout.fragment_person;
+    }
+
+    @Override
+    protected void onUserInvisible() {
     }
 
     //获取商家店铺状态shop_id
@@ -115,6 +105,8 @@ public class PersonFragment extends BaseFragment {
                 @Override
                 public void success(ShopInfoRes shopInfoRes, Response response) {
                     SharedData.shopInfo = shopInfoRes;
+                    personalName.setText(SharedData.shopInfo.getName());
+                    Log.d("TestData","get:"+SharedData.shopInfo.getImage());
                     CommonUtils.showImageWithGlideInCiv(getActivity(), personalIron, SharedData.shopInfo.getImage());
                 }
 

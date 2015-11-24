@@ -1,7 +1,6 @@
 package com.dreamspace.uucampusseller.ui.activity.Login;
 
 import android.app.ProgressDialog;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -125,7 +124,6 @@ public class LoginActivity extends AbsActivity {
             @Override
             public void success(UserInfoRes userInfoRes, Response response) {
                 if(userInfoRes != null){
-                    Log.i("INFO", userInfoRes.toString());
                     saveUserInfo(userInfoRes);
                     progressDialog.dismiss();
                     showToast("登录成功~");

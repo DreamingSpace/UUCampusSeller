@@ -1,7 +1,7 @@
 package com.dreamspace.uucampusseller.ui.activity.Personal;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -89,6 +89,7 @@ public class InfoChangeAct extends AbsActivity {
             public void onClick(View view) {
                 UpdateShopInfoReq req = new UpdateShopInfoReq();
                 req.setImage(SharedData.shopInfo.getImage());
+                Log.d("TestData",SharedData.shopInfo.getImage());
                 req.setName(infoText1.getText().toString());
                 req.setOwner(infoText2.getText().toString());
                 req.setPhone_num(infoText3.getText().toString());
@@ -103,15 +104,21 @@ public class InfoChangeAct extends AbsActivity {
 
     private void updateShopInfo(UpdateShopInfoReq req){
         if(NetUtils.isNetworkConnected(this)){
+            final com.dreamspace.uucampusseller.ui.dialog.ProgressDialog progressDialog = new com.dreamspace.uucampusseller.ui.dialog.ProgressDialog(this);
+            progressDialog.setContent("正在更新店铺信息");
+            progressDialog.show();
             ApiManager.getService(this).updateShopInfo(req, new Callback<Response>() {
                 @Override
                 public void success(Response response, Response response2) {
+                    progressDialog.dismiss();
                     showToast("店铺信息更新成功~");
+                    finish();
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
                     showInnerError(error);
+                    progressDialog.dismiss();
                 }
             });
         }else{
@@ -136,8 +143,10 @@ public class InfoChangeAct extends AbsActivity {
     //上传图片
     private void upLoadImage(final String path){
         TLog.i("Path:", path);
-        final ProgressDialog pd = ProgressDialog.show(this, "", "正在上传", true, false);
         if (NetUtils.isNetworkConnected(this.getApplicationContext())) {
+            final com.dreamspace.uucampusseller.ui.dialog.ProgressDialog progressDialog = new com.dreamspace.uucampusseller.ui.dialog.ProgressDialog(this);
+            progressDialog.setContent("正在上传头像");
+            progressDialog.show();
             ApiManager.getService(this).createQiNiuToken(new Callback<QnRes>() {
                 @Override
                 public void success(QnRes qnRes, Response response) {
@@ -146,9 +155,11 @@ public class InfoChangeAct extends AbsActivity {
                         public void complete(String key, ResponseInfo info, JSONObject response) {
                             if (info.isOK()) {
                                 SharedData.shopInfo.setImage(key); //获取上传的七牛服务器图片url
-                                pd.dismiss();
+                                Log.d("TestData","key:"+key);
+                                progressDialog.dismiss();
+                                showToast("头像上传成功");
                             } else if (info.isServerError()) {
-                                pd.dismiss();
+                                progressDialog.dismiss();
                                 showToast("服务暂时不可用，请稍后重试");
                             }
                         }
@@ -157,7 +168,7 @@ public class InfoChangeAct extends AbsActivity {
 
                 @Override
                 public void failure(RetrofitError error) {
-                    pd.dismiss();
+                    progressDialog.dismiss();
                     showInnerError(error);
                 }
             });
