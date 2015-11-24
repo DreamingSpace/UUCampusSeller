@@ -36,7 +36,7 @@
         android:layout_marginTop="85dp"
         android:background="@drawable/button_round"
         android:gravity="center"
-        android:text="返回登录界面"
+        android:text="立即去申请店铺"
         android:textColor="@color/white"
         android:textSize="20sp" />
 

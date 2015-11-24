@@ -35,6 +35,7 @@
                 android:layout_marginRight="37dp"
                 android:background="@drawable/inputview"
                 android:hint="请输入您的手机号"
+                android:text="15651960565"
                 android:inputType="number"
                 android:paddingLeft="40dp"
                 android:textSize="16sp" />
@@ -63,6 +64,7 @@
                 android:layout_marginRight="37dp"
                 android:background="@drawable/inputview"
                 android:hint="请输入您的密码"
+                android:text="yoyocampus"
                 android:inputType="textPassword"
                 android:paddingLeft="40dp"
                 android:textSize="16sp" />

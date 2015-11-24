@@ -6,6 +6,7 @@ package com.dreamspace.uucampusseller.model.api;
 public class ShopInfoRes {
     private String name;
     private String image;
+
     private String owner;
     private String phone_num;
     private String address;

@@ -1,7 +1,6 @@
 package com.dreamspace.uucampusseller.ui.activity.Login;
 
 import android.app.ProgressDialog;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -125,7 +124,6 @@ public class LoginActivity extends AbsActivity {
             @Override
             public void success(UserInfoRes userInfoRes, Response response) {
                 if(userInfoRes != null){
-                    Log.i("INFO", userInfoRes.toString());
                     saveUserInfo(userInfoRes);
                     progressDialog.dismiss();
                     showToast("登录成功~");
@@ -144,11 +142,6 @@ public class LoginActivity extends AbsActivity {
     //保存用户信息到本地
     private void saveUserInfo(UserInfoRes userInfoRes){
         SharedData.user = userInfoRes;
-//        //这部分还需要修改~
-//        PreferenceUtils.putString(getApplicationContext(),PreferenceUtils.Key.AVATAR,userInfoRes.getImage());
-//        PreferenceUtils.putString(getApplicationContext(),PreferenceUtils.Key.ACCOUNT,userInfoRes.getName());
-//        //PreferenceUtils.putString(getApplicationContext(),PreferenceUtils.Key.SEX,userInfoRes.getSex());
-//        PreferenceUtils.putString(getApplicationContext(), PreferenceUtils.Key.PHONE, LoginUserName.getText().toString());
     }
 
     //输入有效性判断
