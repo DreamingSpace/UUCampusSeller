@@ -13,73 +13,135 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
+    <View
+        android:background="@color/divider_color"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="54dp"
         android:background="@drawable/bottom_bg"
         android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/homepage_order_linear_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+        <RelativeLayout
+            android:id="@+id/order_page_rl"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical"
-            android:padding="4dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/order_unselect_ll"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/order_button_merchant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="@string/order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/homepage_order_n" />
+            <LinearLayout
+                android:id="@+id/order_select_ll"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/orderform_button_merchant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="@string/order"
+                    android:textColor="@color/app_theme_color2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/order" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/homepage_goods_linear_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+        <RelativeLayout
+            android:id="@+id/good_rl"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical"
-            android:padding="4dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/good_unselect_ll"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/commodity_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="@string/goods"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/homepage_shop_n" />
+            <LinearLayout
+                android:id="@+id/good_select_ll"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/commodity_button_merchant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="@string/goods"
+                    android:textColor="@color/app_theme_color2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/goods" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/homepage_person_linear_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+        <RelativeLayout
+            android:id="@+id/personal_rl"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical"
-            android:padding="4dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/personal_unselect_ll"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/my_center_button_merchant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="@string/person"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/homepage_person_n" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/person" />
-        </LinearLayout>
-
-
+            <LinearLayout
+                android:id="@+id/personal_select_ll"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/my_button_merchant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="@string/person"
+                    android:textColor="@color/app_theme_color2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>

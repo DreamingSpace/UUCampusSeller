@@ -39,7 +39,7 @@
     <color name="main_color">#06C1AE</color>
     <color name="text_normal">#666666</color>
     <color name="text_pressed">#059183</color>
-    <color name="divider_color">#999999</color>
+    <color name="divider_color">#bfbfbf</color>
     <color name="goods_fragment_bg_color">#F0EFED</color>
     <color name="no_goods_text_color">#333333</color>
     <color name="wheelview_center_color">#43aa9f</color>
