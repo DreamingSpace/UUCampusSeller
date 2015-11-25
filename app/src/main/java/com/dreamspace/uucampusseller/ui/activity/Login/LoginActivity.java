@@ -1,6 +1,7 @@
 package com.dreamspace.uucampusseller.ui.activity.Login;
 
 import android.app.ProgressDialog;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,8 +39,11 @@ public class LoginActivity extends AbsActivity {
     TextView loginPageForget;
     @Bind(R.id.login_page_register)
     TextView loginPageRegister;
+    @Bind(R.id.custom_title_tv)
+    TextView customTitleTv;
 
     ProgressDialog progressDialog;
+
 
     @Override
     protected int getContentView() {
@@ -53,12 +57,13 @@ public class LoginActivity extends AbsActivity {
 
     @Override
     protected void initViews() {
+        customTitleTv.setText("登录");
         initListeners();
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        getSupportActionBar().setTitle("登录");
+        getSupportActionBar().setTitle("");
     }
 
-    private void initListeners(){
+    private void initListeners() {
         loginPageLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,7 +71,7 @@ public class LoginActivity extends AbsActivity {
 //                readyGoThenKill(MainActivity.class);
                 String phoneNum = LoginUserName.getText().toString();
                 String password = LoginPwd.getText().toString();
-                if(isValid(phoneNum,password)){
+                if (isValid(phoneNum, password)) {
                     LoginReq req = new LoginReq();
                     req.setPhone_num(phoneNum);
                     req.setPassword(password);
@@ -91,10 +96,10 @@ public class LoginActivity extends AbsActivity {
     }
 
     //登录操作
-    private void login(LoginReq loginReq){
-        progressDialog = ProgressDialog.show(this,"","正在登录",true,false);
-        if(NetUtils.isNetworkConnected(this)){
-            ApiManager.getService(this.getApplicationContext()).createAccessToken(loginReq,new Callback<LoginRes>(){
+    private void login(LoginReq loginReq) {
+        progressDialog = ProgressDialog.show(this, "", "正在登录", true, false);
+        if (NetUtils.isNetworkConnected(this)) {
+            ApiManager.getService(this.getApplicationContext()).createAccessToken(loginReq, new Callback<LoginRes>() {
                 @Override
                 public void success(LoginRes loginRes, Response response) {
                     progressDialog.dismiss();
@@ -111,19 +116,19 @@ public class LoginActivity extends AbsActivity {
                     showInnerError(error);
                 }
             });
-        }else{
+        } else {
             progressDialog.dismiss();
             showNetWorkError();
         }
     }
 
     //获取用户信息
-    private void getUserInfo(){
+    private void getUserInfo() {
         ApiManager.getService(getApplicationContext()).getUserInfo(new Callback<UserInfoRes>() {
 
             @Override
             public void success(UserInfoRes userInfoRes, Response response) {
-                if(userInfoRes != null){
+                if (userInfoRes != null) {
                     saveUserInfo(userInfoRes);
                     progressDialog.dismiss();
                     showToast("登录成功~");
@@ -140,27 +145,34 @@ public class LoginActivity extends AbsActivity {
     }
 
     //保存用户信息到本地
-    private void saveUserInfo(UserInfoRes userInfoRes){
+    private void saveUserInfo(UserInfoRes userInfoRes) {
         SharedData.user = userInfoRes;
     }
 
     //输入有效性判断
-    private boolean isValid(String phoneNum,String pwd){
+    private boolean isValid(String phoneNum, String pwd) {
 
-        if(CommonUtils.isEmpty(phoneNum)){
+        if (CommonUtils.isEmpty(phoneNum)) {
             showToast("请输入您的手机号码");
             LoginUserName.requestFocus();
             return false;
         }
-        if(phoneNum.length()!=11){
+        if (phoneNum.length() != 11) {
             showToast("请检查您的输入格式");
             LoginUserName.requestFocus();
             return false;
         }
-        if(CommonUtils.isEmpty(pwd)){
+        if (CommonUtils.isEmpty(pwd)) {
             showToast("请输入您的密码");
             return false;
         }
         return true;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

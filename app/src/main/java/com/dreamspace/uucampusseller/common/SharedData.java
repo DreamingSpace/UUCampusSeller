@@ -22,4 +22,8 @@ public class SharedData {
     public static UserInfoRes user;
     public static ShopStatusRes shopStatus;
     public static ShopInfoRes shopInfo;
+    //支付宝账号和支付宝绑定状态
+    //绑定状态：-1（未提交），0（审核中），1（审核通过）
+    public static String alipay;
+    public static int status = -1;
 }

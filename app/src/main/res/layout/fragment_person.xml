@@ -40,23 +40,27 @@
             android:layout_height="40dp">
             <ImageView
                 android:id="@+id/personal_img1"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ebuy_icon_merchant"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
                 android:text="支付宝账户"
                 android:textSize="18sp"
                 android:gravity="center"
                 android:layout_toRightOf="@+id/personal_img1"
                 android:textColor="@color/black_opaque"/>
             <TextView
+                android:id="@+id/ali_bind_text"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@+id/personal_arrow1"
                 android:textSize="16sp"
-                android:text="绑定账户"
+                android:text="未绑定"
                 android:layout_marginRight="10dp"
                 android:gravity="center"/>
             <ImageView
@@ -82,13 +86,16 @@
             android:layout_height="40dp">
             <ImageView
                 android:id="@+id/personal_img2"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/explanation_icon_merchant"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="悠悠商家使用说明"
+                android:layout_marginLeft="15dp"
                 android:textSize="18sp"
                 android:gravity="center"
                 android:layout_toRightOf="@+id/personal_img2"

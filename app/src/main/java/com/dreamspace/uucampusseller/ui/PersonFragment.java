@@ -13,10 +13,13 @@ import com.dreamspace.uucampusseller.api.ApiManager;
 import com.dreamspace.uucampusseller.common.SharedData;
 import com.dreamspace.uucampusseller.common.utils.CommonUtils;
 import com.dreamspace.uucampusseller.common.utils.NetUtils;
+import com.dreamspace.uucampusseller.model.api.ShopBindRes;
 import com.dreamspace.uucampusseller.model.api.ShopInfoRes;
 import com.dreamspace.uucampusseller.model.api.ShopStatusRes;
 import com.dreamspace.uucampusseller.ui.activity.Personal.AboutAct;
 import com.dreamspace.uucampusseller.ui.activity.Personal.AliPayAct;
+import com.dreamspace.uucampusseller.ui.activity.Personal.AliPayDoneAct;
+import com.dreamspace.uucampusseller.ui.activity.Personal.AliPayWaitAct;
 import com.dreamspace.uucampusseller.ui.activity.Personal.DirectionAct;
 import com.dreamspace.uucampusseller.ui.activity.Personal.FeedBackAct;
 import com.dreamspace.uucampusseller.ui.activity.Personal.InfoChangeAct;
@@ -52,6 +55,8 @@ public class PersonFragment extends BaseLazyFragment {
     TextView personCallTelephone;
     @Bind(R.id.personal_name)
     TextView personalName;
+    @Bind(R.id.ali_bind_text)
+    TextView aliBindText;
 
     @Override
     protected void onFirstUserVisible() {
@@ -62,6 +67,7 @@ public class PersonFragment extends BaseLazyFragment {
     protected void onUserVisible() {
         //修改店铺资料后重新刷新，获取数据
         getShopStatus();
+
     }
 
     @Override
@@ -86,6 +92,7 @@ public class PersonFragment extends BaseLazyFragment {
                 public void success(ShopStatusRes shopStatusRes, Response response) {
                     SharedData.shopStatus = shopStatusRes;
                     getShopInfo();
+                    getBindStatus();
                 }
 
                 @Override
@@ -100,24 +107,43 @@ public class PersonFragment extends BaseLazyFragment {
 
     //获取店铺信息
     private void getShopInfo() {
-        if (NetUtils.isNetworkConnected(getActivity())) {
-            ApiManager.getService(getActivity()).getShopInfo(SharedData.shopStatus.getShop_id(), new Callback<ShopInfoRes>() {
-                @Override
-                public void success(ShopInfoRes shopInfoRes, Response response) {
-                    SharedData.shopInfo = shopInfoRes;
-                    personalName.setText(SharedData.shopInfo.getName());
-                    Log.d("TestData","get:"+SharedData.shopInfo.getImage());
-                    CommonUtils.showImageWithGlideInCiv(getActivity(), personalIron, SharedData.shopInfo.getImage());
-                }
+        ApiManager.getService(getActivity()).getShopInfo(SharedData.shopStatus.getShop_id(), new Callback<ShopInfoRes>() {
+            @Override
+            public void success(ShopInfoRes shopInfoRes, Response response) {
+                SharedData.shopInfo = shopInfoRes;
+                personalName.setText(SharedData.shopInfo.getName());
+                Log.d("TestData", "get:" + SharedData.shopInfo.getImage());
+                CommonUtils.showImageWithGlideInCiv(getActivity(), personalIron, SharedData.shopInfo.getImage());
 
-                @Override
-                public void failure(RetrofitError error) {
-                    showInnerError(error);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                showInnerError(error);
+            }
+        });
+    }
+
+    //获取店铺支付宝绑定状态
+    private void getBindStatus() {
+        ApiManager.getService(getActivity()).getShopBindStatus(new Callback<ShopBindRes>() {
+            @Override
+            public void success(ShopBindRes shopBindRes, Response response) {
+                SharedData.alipay = shopBindRes.getAlipay();
+                SharedData.status = shopBindRes.getAlipay_identified();
+                if (SharedData.status == 0) {
+                    //绑定状态为审核中
+                    aliBindText.setText("审核中");
+                }else if(SharedData.status == -1){
+                    aliBindText.setText("已绑定");
                 }
-            });
-        } else {
-            showNetWorkError();
-        }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
     }
 
     private void initListeners() {
@@ -131,7 +157,17 @@ public class PersonFragment extends BaseLazyFragment {
         personalRelative1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                readyGo(AliPayAct.class);
+                switch (SharedData.status){
+                    case -1:
+                        readyGo(AliPayAct.class);
+                        break;
+                    case 0:
+                        readyGo(AliPayWaitAct.class);
+                        break;
+                    case 1:
+                        readyGo(AliPayDoneAct.class);
+                        break;
+                }
             }
         });
 
@@ -184,4 +220,5 @@ public class PersonFragment extends BaseLazyFragment {
     protected View getLoadingTargetView() {
         return null;
     }
+
 }

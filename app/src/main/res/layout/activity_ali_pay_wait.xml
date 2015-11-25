@@ -17,7 +17,7 @@
         android:layout_width="300dp"
         android:layout_marginTop="30dp"
         android:layout_height="wrap_content"
-        android:text="您已经提交支付宝账号，悠悠客服会在一个工作日内后处理完成"
+        android:text="您已经提交支付宝账号，悠悠客服会在一个工作日内处理完成"
         android:textSize="16sp"
         android:textColor="@color/black_opaque"/>
 

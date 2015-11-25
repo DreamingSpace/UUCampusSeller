@@ -30,6 +30,8 @@ import com.dreamspace.uucampusseller.model.api.RegisterReq;
 import com.dreamspace.uucampusseller.model.api.RegisterRes;
 import com.dreamspace.uucampusseller.model.api.ResetReq;
 import com.dreamspace.uucampusseller.model.api.SendVerifyReq;
+import com.dreamspace.uucampusseller.model.api.ShopBindReq;
+import com.dreamspace.uucampusseller.model.api.ShopBindRes;
 import com.dreamspace.uucampusseller.model.api.ShopInfoRes;
 import com.dreamspace.uucampusseller.model.api.ShopStatusRes;
 import com.dreamspace.uucampusseller.model.api.UpdateShopInfoReq;
@@ -133,6 +135,10 @@ public interface UUService {
     //店铺信息查看
     @GET("/shop/{shop_id}")
     void getShopInfo(@Path("shop_id") String shop_id, Callback<ShopInfoRes> cb);
+    @PUT("/shop/bind")
+    void putShopBind(@Body ShopBindReq req,Callback<Response> cb);
+    @GET("/shop/bind/")
+    void getShopBindStatus(Callback<ShopBindRes> cb);
 
 
 //订单

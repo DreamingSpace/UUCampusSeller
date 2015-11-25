@@ -5,6 +5,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.dreamspace.uucampusseller.R;
+import com.dreamspace.uucampusseller.common.SharedData;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;
 
 import butterknife.Bind;
@@ -31,6 +32,7 @@ public class AliPayDoneAct extends AbsActivity {
 
     @Override
     protected void initViews() {
+        aliPayAcountText.setText(SharedData.alipay);
         aliPayUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

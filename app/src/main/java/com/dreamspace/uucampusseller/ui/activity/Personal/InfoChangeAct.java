@@ -13,7 +13,6 @@ import com.dreamspace.uucampusseller.common.SharedData;
 import com.dreamspace.uucampusseller.common.UploadImage;
 import com.dreamspace.uucampusseller.common.utils.CommonUtils;
 import com.dreamspace.uucampusseller.common.utils.NetUtils;
-import com.dreamspace.uucampusseller.common.utils.TLog;
 import com.dreamspace.uucampusseller.model.api.QnRes;
 import com.dreamspace.uucampusseller.model.api.UpdateShopInfoReq;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;
@@ -22,6 +21,9 @@ import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
 
 import org.json.JSONObject;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -54,6 +56,7 @@ public class InfoChangeAct extends AbsActivity {
     Button infoChangeButton;
 
     public static int PHOTO_REQUEST_CODE = 1;
+    private boolean imgChange = false;
 
     @Override
     protected int getContentView() {
@@ -88,7 +91,9 @@ public class InfoChangeAct extends AbsActivity {
             @Override
             public void onClick(View view) {
                 UpdateShopInfoReq req = new UpdateShopInfoReq();
-                req.setImage(SharedData.shopInfo.getImage());
+                if(imgChange){
+                    req.setImage(SharedData.shopInfo.getImage());
+                }
                 Log.d("TestData",SharedData.shopInfo.getImage());
                 req.setName(infoText1.getText().toString());
                 req.setOwner(infoText2.getText().toString());
@@ -112,7 +117,14 @@ public class InfoChangeAct extends AbsActivity {
                 public void success(Response response, Response response2) {
                     progressDialog.dismiss();
                     showToast("店铺信息更新成功~");
-                    finish();
+                    TimerTask task = new TimerTask() {
+                        @Override
+                        public void run() {
+                            finish();
+                        }
+                    };
+                    Timer timer = new Timer();
+                    timer.schedule(task, 2000);
                 }
 
                 @Override
@@ -142,7 +154,6 @@ public class InfoChangeAct extends AbsActivity {
 
     //上传图片
     private void upLoadImage(final String path){
-        TLog.i("Path:", path);
         if (NetUtils.isNetworkConnected(this.getApplicationContext())) {
             final com.dreamspace.uucampusseller.ui.dialog.ProgressDialog progressDialog = new com.dreamspace.uucampusseller.ui.dialog.ProgressDialog(this);
             progressDialog.setContent("正在上传头像");
@@ -154,8 +165,9 @@ public class InfoChangeAct extends AbsActivity {
                         @Override
                         public void complete(String key, ResponseInfo info, JSONObject response) {
                             if (info.isOK()) {
-                                SharedData.shopInfo.setImage(key); //获取上传的七牛服务器图片url
-                                Log.d("TestData","key:"+key);
+                                //获取上传的七牛服务器图片url
+                                SharedData.shopInfo.setImage(key);
+                                imgChange = true;
                                 progressDialog.dismiss();
                                 showToast("头像上传成功");
                             } else if (info.isServerError()) {
