@@ -53,7 +53,7 @@ public class OrderFragment extends BaseLazyFragment {
 
     @Override
     protected View getLoadingTargetView() {
-        return mSmartTabLayout;
+        return null;
     }
 
     @Override
@@ -73,14 +73,14 @@ public class OrderFragment extends BaseLazyFragment {
                 @Override
                 public void success(GetOrderStatusRes getOrderStatusRes, Response response) {
                     TLog.i("success:", response.getBody() + "" + response.getReason());
-//                    if (!isFragmentDestroy) {
+                    if (!isFragmentDestroy) {
                         items.add(SharedData.orderTabs[0] + "(" + getOrderStatusRes.getOrder_status_1() + ")");
                         items.add(SharedData.orderTabs[1] + "(" + getOrderStatusRes.getOrder_status_2() + ")");
                         items.add(SharedData.orderTabs[2] + "(" + getOrderStatusRes.getOrder_status_3() + ")");
                         items.add(SharedData.orderTabs[3] + "(" + getOrderStatusRes.getOrder_status_0() + ")");
                         initFragment(items);
                         TLog.i("items:", items.toString());
-//                    }
+                    }
                 }
 
                 @Override

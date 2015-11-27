@@ -94,9 +94,9 @@ public class OrderDetailActivity extends AbsActivity{
         mPhoneTv.setText(" : "+getShopOrderDetailRes.getBuyer().getPhone_num());
         mLocationTv.setText(" : "+getShopOrderDetailRes.getBuyer().getLocation());
         mQuantityTv.setText(" : "+String.valueOf(getShopOrderDetailRes.getQuantity()));
-        mTotalPriceTv.setText(" : "+String.valueOf(getShopOrderDetailRes.getTotal_original()));
-        mPayTv.setText(" : "+String.valueOf(getShopOrderDetailRes.getTotal_price()));
-        mDiscountTv.setText(" : "+String.valueOf(getShopOrderDetailRes.getTotal_dicount()));
+        mTotalPriceTv.setText(" : "+String.valueOf(getShopOrderDetailRes.getTotal_original()/100));
+        mPayTv.setText(" : "+String.valueOf(getShopOrderDetailRes.getTotal_price()/100));
+        mDiscountTv.setText(" : "+String.valueOf(getShopOrderDetailRes.getTotal_dicount()/100));
         mMemorandumTv.setText(" : "+getShopOrderDetailRes.getGood().getLabel());
 
         switch (tab_position){

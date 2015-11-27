@@ -48,7 +48,6 @@ public class OrderShowFragment extends BaseLazyFragment {
     public static final int LOAD = 1;
     public static final int ADD = 2;
 
-
     @Override
     protected void onFirstUserVisible() {
         tabPosition = FragmentPagerItem.getPosition(getArguments());
@@ -133,16 +132,16 @@ public class OrderShowFragment extends BaseLazyFragment {
     }
 
     public void loadingInitData() {
-        toggleShowLoading(true, getString(R.string.common_loading_message));
+//        toggleShowLoading(true, null);
         if (NetUtils.isNetworkConnected(getActivity().getApplicationContext())) {
             ApiManager.getService(getActivity().getApplicationContext()).getShopOrderList(page, status, new Callback<GetShopOrderListRes>() {
                 @Override
                 public void success(GetShopOrderListRes getShopOrderListRes, Response response) {
                     if (!isFragDestroy) {
                             if(getShopOrderListRes.getOrders()!=null&&getShopOrderListRes.getOrders().size()==0){
-                                toggleShowEmpty(true, getString(R.string.common_empty_msg), null);
+//                                toggleShowEmpty(true,null, emtpyListener);
                             }else {
-                                toggleShowLoading(false,null);
+//                                toggleShowLoading(false,null);
                                 refreshDate(getShopOrderListRes.getOrders(), LOAD);
                             }
                     }
@@ -252,4 +251,11 @@ public class OrderShowFragment extends BaseLazyFragment {
         super.onDestroy();
         isFragDestroy = true;
     }
+
+    private View.OnClickListener emtpyListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            loadingInitData();
+        }
+    };
 }
