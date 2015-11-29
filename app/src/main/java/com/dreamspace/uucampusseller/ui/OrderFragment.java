@@ -7,7 +7,6 @@ import com.dreamspace.uucampusseller.R;
 import com.dreamspace.uucampusseller.api.ApiManager;
 import com.dreamspace.uucampusseller.common.SharedData;
 import com.dreamspace.uucampusseller.common.utils.NetUtils;
-import com.dreamspace.uucampusseller.common.utils.TLog;
 import com.dreamspace.uucampusseller.model.api.GetOrderStatusRes;
 import com.dreamspace.uucampusseller.ui.base.BaseLazyFragment;
 import com.dreamspace.uucampusseller.ui.fragment.order.OrderShowFragment;
@@ -72,15 +71,11 @@ public class OrderFragment extends BaseLazyFragment {
             ApiManager.getService(getActivity().getApplicationContext()).getOrderStatus(new Callback<GetOrderStatusRes>() {
                 @Override
                 public void success(GetOrderStatusRes getOrderStatusRes, Response response) {
-                    TLog.i("success:", response.getBody() + "" + response.getReason());
-                    if (!isFragmentDestroy) {
                         items.add(SharedData.orderTabs[0] + "(" + getOrderStatusRes.getOrder_status_1() + ")");
                         items.add(SharedData.orderTabs[1] + "(" + getOrderStatusRes.getOrder_status_2() + ")");
                         items.add(SharedData.orderTabs[2] + "(" + getOrderStatusRes.getOrder_status_3() + ")");
                         items.add(SharedData.orderTabs[3] + "(" + getOrderStatusRes.getOrder_status_0() + ")");
                         initFragment(items);
-                        TLog.i("items:", items.toString());
-                    }
                 }
 
                 @Override
@@ -108,7 +103,6 @@ public class OrderFragment extends BaseLazyFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         isFragmentDestroy = true;
     }
 

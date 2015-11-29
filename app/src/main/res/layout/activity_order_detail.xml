@@ -172,7 +172,7 @@
                     android:id="@+id/order_detail_total_price_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" : 1200"
+                    android:text=" "
                     android:textColor="@color/text_normal" />
             </LinearLayout>
 
@@ -192,7 +192,7 @@
                     android:id="@+id/order_detail_pay_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" : 1000"
+                    android:text=""
                     android:textColor="@color/text_normal" />
 
                 <TextView
@@ -206,7 +206,7 @@
                     android:id="@+id/order_detail_discount_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" : 200"
+                    android:text=" "
                     android:textColor="@color/text_normal" />
             </LinearLayout>
 

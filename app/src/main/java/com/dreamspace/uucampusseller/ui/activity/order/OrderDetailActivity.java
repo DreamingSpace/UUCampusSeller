@@ -57,7 +57,6 @@ public class OrderDetailActivity extends AbsActivity{
     protected void prepareDatas() {
         order_id = getIntent().getExtras().getString(EXTRA_ORDER_ID);
         tab_position=getIntent().getExtras().getInt(EXTRA_TAB_POSITION);
-        TLog.i("order_id:",order_id+" tab position:"+tab_position);
     }
 
     @Override
@@ -77,6 +76,7 @@ public class OrderDetailActivity extends AbsActivity{
 
                 @Override
                 public void failure(RetrofitError error) {
+                    TLog.i("Error:",error.getResponse()+" "+" "+error.getMessage());
                     showInnerError(error);
                     pd.dismiss();
                 }
@@ -96,7 +96,7 @@ public class OrderDetailActivity extends AbsActivity{
         mQuantityTv.setText(" : "+String.valueOf(getShopOrderDetailRes.getQuantity()));
         mTotalPriceTv.setText(" : "+String.valueOf(getShopOrderDetailRes.getTotal_original()/100));
         mPayTv.setText(" : "+String.valueOf(getShopOrderDetailRes.getTotal_price()/100));
-        mDiscountTv.setText(" : "+String.valueOf(getShopOrderDetailRes.getTotal_dicount()/100));
+        mDiscountTv.setText(" : "+String.valueOf(getShopOrderDetailRes.getTotal_discount()/100));
         mMemorandumTv.setText(" : "+getShopOrderDetailRes.getGood().getLabel());
 
         switch (tab_position){
