@@ -39,21 +39,35 @@ public class OrderShowFragment extends BaseLazyFragment {
     SwipeRefreshLayout mSwipeRefreshLayout;
 
     private int tabPosition = 0;
-    private BasisAdapter mAdapter;
+    private BasisAdapter mAdapter=null;
     private int page = 1;
     private int status = 1;
     private String order_id = null;
     private boolean isFragDestroy = false;
+    private boolean bAlreadyGetData = false;      //判断数据是否获取数据
 
     public static final int LOAD = 1;
     public static final int ADD = 2;
 
     @Override
-    protected void onFirstUserVisible() {
-        tabPosition = FragmentPagerItem.getPosition(getArguments());
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
-        initStatus(tabPosition);
-        loadingInitData();
+    @Override
+    protected void onFirstUserVisible() {
+        if (!bAlreadyGetData) {
+            tabPosition = FragmentPagerItem.getPosition(getArguments());
+            initStatus(tabPosition);
+            loadingInitData();
+        } else {
+            if (mAdapter != null) {
+                mMoreListView.setAdapter(mAdapter);
+                TLog.i("order tab mAdapter:", mAdapter.getCount() + "");
+            } else {
+                toggleShowEmpty(true, getString(R.string.no_such_order), emtpyListener);
+            }
+        }
     }
 
     @Override
@@ -98,8 +112,7 @@ public class OrderShowFragment extends BaseLazyFragment {
     }
 
     private void initDatas() {
-        mAdapter = new OrderItemAdapter(getActivity());
-        mMoreListView.setAdapter(mAdapter);
+
         mMoreListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -128,28 +141,31 @@ public class OrderShowFragment extends BaseLazyFragment {
                 status = 0;
                 break;
         }
-        Log.i("order tab:", SharedData.orderTabs[tabPosition] + " status:" + status);
+
     }
 
     public void loadingInitData() {
+        TLog.i("loading init data:", bAlreadyGetData+" "+SharedData.orderTabs[tabPosition] + " status:" + status);
 //        toggleShowLoading(true, null);
         if (NetUtils.isNetworkConnected(getActivity().getApplicationContext())) {
             ApiManager.getService(getActivity().getApplicationContext()).getShopOrderList(page, status, new Callback<GetShopOrderListRes>() {
                 @Override
                 public void success(GetShopOrderListRes getShopOrderListRes, Response response) {
                     if (!isFragDestroy) {
-                            if(getShopOrderListRes.getOrders()!=null&&getShopOrderListRes.getOrders().size()==0){
-//                                toggleShowEmpty(true,null, emtpyListener);
-                            }else {
-//                                toggleShowLoading(false,null);
-                                refreshDate(getShopOrderListRes.getOrders(), LOAD);
-                            }
+                        if (getShopOrderListRes.getOrders() != null && getShopOrderListRes.getOrders().size() == 0) {
+//                            toggleShowEmpty(true, null, emtpyListener);
+                        } else {
+//                            toggleShowLoading(false, null);
+                            refreshDate(getShopOrderListRes.getOrders(), LOAD);
+                        }
+                        bAlreadyGetData = true;
                     }
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
                     showInnerError(error);
+                    bAlreadyGetData = false;
                 }
             });
         } else {
@@ -160,7 +176,9 @@ public class OrderShowFragment extends BaseLazyFragment {
     public void refreshDate(List<OrderItem> mEntities, int type) {
         switch (type) {
             case LOAD:
+                mAdapter = new OrderItemAdapter(getActivity());
                 mAdapter.setmEntities(mEntities);
+                mMoreListView.setAdapter(mAdapter);
                 break;
             case ADD:
                 mAdapter.addEntities(mEntities);
@@ -207,13 +225,13 @@ public class OrderShowFragment extends BaseLazyFragment {
 
     public void onPullUpFinished() {
         tabPosition = FragmentPagerItem.getPosition(getArguments());
-        Log.i("Refresh tab:", SharedData.orderTabs[tabPosition]);
+        TLog.i("Refresh tab:", SharedData.orderTabs[tabPosition]);
         mMoreListView.setLoading(false);
     }
 
     public void onPullDownFinished() {
         tabPosition = FragmentPagerItem.getPosition(getArguments());
-        Log.i("Refresh tab:", SharedData.orderTabs[tabPosition]);
+        TLog.i("Refresh tab:", SharedData.orderTabs[tabPosition]);
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
@@ -228,22 +246,20 @@ public class OrderShowFragment extends BaseLazyFragment {
                         showToast(response.getReason());
                         onRefreshListener.onError();
                     }
+                    bAlreadyGetData = true;
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
                     onRefreshListener.onError();
                     showInnerError(error);
+                    bAlreadyGetData = false;
                 }
             });
         } else {
             onRefreshListener.onError();
             showNetWorkError();
         }
-    }
-
-    public interface RefreshTab {
-        public void refreshTab(int tabPosition, String tabNum);
     }
 
     @Override

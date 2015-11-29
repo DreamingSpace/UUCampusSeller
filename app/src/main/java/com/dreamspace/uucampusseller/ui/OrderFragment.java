@@ -13,8 +13,8 @@ import com.dreamspace.uucampusseller.ui.base.BaseLazyFragment;
 import com.dreamspace.uucampusseller.ui.fragment.order.OrderShowFragment;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
-import com.ogaclejapan.smarttablayout.utils.v4.FragmentStatePagerItemAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +99,7 @@ public class OrderFragment extends BaseLazyFragment {
         for (String item : items) {
             pages.add(FragmentPagerItem.of(item, OrderShowFragment.class));
         }
-        FragmentStatePagerItemAdapter adapter = new FragmentStatePagerItemAdapter(
+        FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
                 getChildFragmentManager(), pages);
         mViewPager.setAdapter(adapter);
         mSmartTabLayout.setViewPager(mViewPager);
