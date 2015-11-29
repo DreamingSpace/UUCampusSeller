@@ -12,7 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dreamspace.uucampusseller.R;
-import com.dreamspace.uucampusseller.common.utils.PreferenceUtils;
 import com.dreamspace.uucampusseller.ui.activity.Goods.EditGoodInfoAct;
 import com.dreamspace.uucampusseller.ui.activity.order.CodeScanningActivity;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;
@@ -82,8 +81,8 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
 
         //测试
        // access_token存放
-        PreferenceUtils.putString(this.getApplicationContext(),
-                PreferenceUtils.Key.ACCESS, "e4cde8f0-9114-11e5-8e72-00163e021195");// aae889e0-82d4-11e5-bd1c-00163e021195
+//        PreferenceUtils.putString(this.getApplicationContext(),
+//                PreferenceUtils.Key.ACCESS, "e4cde8f0-9114-11e5-8e72-00163e021195");// aae889e0-82d4-11e5-bd1c-00163e021195
 
         OrderFragment orderFragment = new OrderFragment();
         GoodsFragment goodsFragment = new GoodsFragment();
