@@ -24,10 +24,10 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity android:name=".ui.activity.Login.LoginActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <!-- phote picker-->
@@ -50,10 +50,6 @@
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!-- order-->
@@ -89,5 +85,6 @@
             android:label="意见反馈"/>
         <activity android:name=".ui.activity.order.CodeScanningActivity"
             android:label="@string/scan_code"/>
+        <activity android:name=".ui.activity.order.QRcodeScanAct"/>
     </application>
 </manifest>

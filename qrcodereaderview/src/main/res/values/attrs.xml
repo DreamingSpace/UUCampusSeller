@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="QRCodeView">
+        <attr name="maskColor" format="color"/>
+        <attr name="cornerColor" format="color"/>
+        <attr name="cornerLength" format="dimension"/>
+        <attr name="cornerSize" format="dimension"/>
+        <attr name="scanLineSize" format="dimension"/>
+        <attr name="scanLineColor" format="color"/>
+        <attr name="rectWidth" format="dimension"/>
+        <attr name="topOffset" format="dimension"/>
+    </declare-styleable>
+</resources>

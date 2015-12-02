@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.dlazaro66.qrcodereaderview.QRCodeView
+        android:id="@+id/qr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.dlazaro66.qrcodereaderview.QRCodeView>
+</LinearLayout><!-- From: file:/G:/projects/Android/QRcodeView/QRCodeReaderView/QRCodeReaderView-lib/qrcodereaderview/src/main/res/layout/main.xml -->

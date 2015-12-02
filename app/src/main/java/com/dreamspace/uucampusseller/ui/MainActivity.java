@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.dreamspace.uucampusseller.R;
 import com.dreamspace.uucampusseller.ui.activity.Goods.EditGoodInfoAct;
 import com.dreamspace.uucampusseller.ui.activity.order.CodeScanningActivity;
+import com.dreamspace.uucampusseller.ui.activity.order.QRcodeScanAct;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;
 
 import java.util.ArrayList;
@@ -187,7 +188,8 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
         //noinspection SimplifiableIfStatement
         if (id == R.id.scan_ensure) {
 //            readyGo(ApplyShopHintActivity.class);
-            readyGo(CodeScanningActivity.class);
+//            readyGo(CodeScanningActivity.class);
+            readyGo(QRcodeScanAct.class);
         }
         //添加商品
         else if(id == R.id.add_good) {
