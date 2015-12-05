@@ -148,7 +148,7 @@ public abstract class AbsActivity extends AppCompatActivity {
         showToast(getResources().getString(R.string.network_error_tips));
     }
     protected void showInnerError(RetrofitError error) {
-        if (error != null)
+        if (error.getBody() != null)
             showToast(CommonUtils.getErrorInfo(error).getReason());
     }
     @Override

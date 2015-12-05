@@ -17,7 +17,7 @@ public class GetShopOrderDetailRes {
     private float total_price;
     private String _id;
     private int quantity;
-    private float total_dicount;
+    private float total_discount;
     private float total_original;
 
     public int getStatus() {
@@ -92,12 +92,12 @@ public class GetShopOrderDetailRes {
         this.quantity = quantity;
     }
 
-    public float getTotal_dicount() {
-        return total_dicount;
+    public float getTotal_discount() {
+        return total_discount;
     }
 
-    public void setTotal_dicount(float total_dicount) {
-        this.total_dicount = total_dicount;
+    public void setTotal_discount(float total_discount) {
+        this.total_discount = total_discount;
     }
 
     public float getTotal_original() {

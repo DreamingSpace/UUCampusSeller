@@ -7,14 +7,13 @@ import com.dreamspace.uucampusseller.R;
 import com.dreamspace.uucampusseller.api.ApiManager;
 import com.dreamspace.uucampusseller.common.SharedData;
 import com.dreamspace.uucampusseller.common.utils.NetUtils;
-import com.dreamspace.uucampusseller.common.utils.TLog;
 import com.dreamspace.uucampusseller.model.api.GetOrderStatusRes;
 import com.dreamspace.uucampusseller.ui.base.BaseLazyFragment;
 import com.dreamspace.uucampusseller.ui.fragment.order.OrderShowFragment;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
-import com.ogaclejapan.smarttablayout.utils.v4.FragmentStatePagerItemAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +52,7 @@ public class OrderFragment extends BaseLazyFragment {
 
     @Override
     protected View getLoadingTargetView() {
-        return mSmartTabLayout;
+        return null;
     }
 
     @Override
@@ -72,15 +71,11 @@ public class OrderFragment extends BaseLazyFragment {
             ApiManager.getService(getActivity().getApplicationContext()).getOrderStatus(new Callback<GetOrderStatusRes>() {
                 @Override
                 public void success(GetOrderStatusRes getOrderStatusRes, Response response) {
-                    TLog.i("success:", response.getBody() + "" + response.getReason());
-//                    if (!isFragmentDestroy) {
                         items.add(SharedData.orderTabs[0] + "(" + getOrderStatusRes.getOrder_status_1() + ")");
                         items.add(SharedData.orderTabs[1] + "(" + getOrderStatusRes.getOrder_status_2() + ")");
                         items.add(SharedData.orderTabs[2] + "(" + getOrderStatusRes.getOrder_status_3() + ")");
                         items.add(SharedData.orderTabs[3] + "(" + getOrderStatusRes.getOrder_status_0() + ")");
                         initFragment(items);
-                        TLog.i("items:", items.toString());
-//                    }
                 }
 
                 @Override
@@ -99,7 +94,7 @@ public class OrderFragment extends BaseLazyFragment {
         for (String item : items) {
             pages.add(FragmentPagerItem.of(item, OrderShowFragment.class));
         }
-        FragmentStatePagerItemAdapter adapter = new FragmentStatePagerItemAdapter(
+        FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
                 getChildFragmentManager(), pages);
         mViewPager.setAdapter(adapter);
         mSmartTabLayout.setViewPager(mViewPager);
@@ -108,7 +103,6 @@ public class OrderFragment extends BaseLazyFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         isFragmentDestroy = true;
     }
 

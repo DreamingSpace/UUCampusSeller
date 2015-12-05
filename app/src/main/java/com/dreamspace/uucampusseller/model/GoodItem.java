@@ -1,5 +1,7 @@
 package com.dreamspace.uucampusseller.model;
 
+import java.util.List;
+
 /**
  * Created by wufan on 2015/11/6.
  */
@@ -10,7 +12,7 @@ public class GoodItem {
     private String category;
     private float origin_price;
     private String group;
-    private String description;
+    private List<DescriptionItem> description;
     private String price;
     private String label;
     private float discount;
@@ -63,11 +65,11 @@ public class GoodItem {
         this.group = group;
     }
 
-    public String getDescription() {
+    public List<DescriptionItem> getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(List<DescriptionItem> description) {
         this.description = description;
     }
 
