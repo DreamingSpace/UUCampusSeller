@@ -2,11 +2,13 @@ package com.dreamspace.uucampusseller.ui;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.dreamspace.uucampusseller.R;
 import com.dreamspace.uucampusseller.api.ApiManager;
 import com.dreamspace.uucampusseller.common.SharedData;
 import com.dreamspace.uucampusseller.common.utils.NetUtils;
+import com.dreamspace.uucampusseller.common.utils.TLog;
 import com.dreamspace.uucampusseller.model.api.GetOrderStatusRes;
 import com.dreamspace.uucampusseller.ui.base.BaseLazyFragment;
 import com.dreamspace.uucampusseller.ui.fragment.order.OrderShowFragment;
@@ -31,7 +33,11 @@ public class OrderFragment extends BaseLazyFragment {
     SmartTabLayout mSmartTabLayout;
     @Bind(R.id.order_view_pager)
     ViewPager mViewPager;
+    @Bind(R.id.order_content_linear_layout)
+    LinearLayout contentLl;
+
     private boolean isFragmentDestroy = false;
+    private boolean bNetWork=false;
 
     public static final String ORDER_TAB = "tab_index";
 
@@ -52,7 +58,7 @@ public class OrderFragment extends BaseLazyFragment {
 
     @Override
     protected View getLoadingTargetView() {
-        return null;
+        return contentLl;
     }
 
     @Override
@@ -71,6 +77,7 @@ public class OrderFragment extends BaseLazyFragment {
             ApiManager.getService(getActivity().getApplicationContext()).getOrderStatus(new Callback<GetOrderStatusRes>() {
                 @Override
                 public void success(GetOrderStatusRes getOrderStatusRes, Response response) {
+                    TLog.i("success:",getOrderStatusRes.toString());
                         items.add(SharedData.orderTabs[0] + "(" + getOrderStatusRes.getOrder_status_1() + ")");
                         items.add(SharedData.orderTabs[1] + "(" + getOrderStatusRes.getOrder_status_2() + ")");
                         items.add(SharedData.orderTabs[2] + "(" + getOrderStatusRes.getOrder_status_3() + ")");
@@ -86,16 +93,24 @@ public class OrderFragment extends BaseLazyFragment {
 
         } else {
             showNetWorkError();
+            toggleNetworkError(true, emtpyListener);
+            bNetWork=true;
         }
     }
 
     private void initFragment(List<String> items) {
+        if(bNetWork) {
+            toggleRestore();
+            bNetWork=false;
+        }
+            TLog.i("success:",items.toString());
         FragmentPagerItems pages = new FragmentPagerItems(getActivity());
         for (String item : items) {
             pages.add(FragmentPagerItem.of(item, OrderShowFragment.class));
         }
         FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
                 getChildFragmentManager(), pages);
+        TLog.i("success:",adapter.getCount()+"");
         mViewPager.setAdapter(adapter);
         mSmartTabLayout.setViewPager(mViewPager);
     }
@@ -105,5 +120,12 @@ public class OrderFragment extends BaseLazyFragment {
         super.onDestroy();
         isFragmentDestroy = true;
     }
+
+    private View.OnClickListener emtpyListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            initTabs();
+        }
+    };
 
 }

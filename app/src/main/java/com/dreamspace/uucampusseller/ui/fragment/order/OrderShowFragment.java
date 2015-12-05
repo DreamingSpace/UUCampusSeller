@@ -5,6 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 
 import com.dreamspace.uucampusseller.R;
 import com.dreamspace.uucampusseller.adapter.base.BasisAdapter;
@@ -37,7 +38,8 @@ public class OrderShowFragment extends BaseLazyFragment {
     LoadMoreListView mMoreListView;
     @Bind(R.id.order_swipe_refresh)
     SwipeRefreshLayout mSwipeRefreshLayout;
-
+    @Bind(R.id.order_content_ll)
+    LinearLayout contentLl;
     private int tabPosition = 0;
     private BasisAdapter mAdapter=null;
     private int page = 1;
@@ -45,6 +47,7 @@ public class OrderShowFragment extends BaseLazyFragment {
     private String order_id = null;
     private boolean isFragDestroy = false;
     private boolean bAlreadyGetData = false;      //判断数据是否获取数据
+    private boolean bToggleEmpty=false;
 
     public static final int LOAD = 1;
     public static final int ADD = 2;
@@ -82,7 +85,7 @@ public class OrderShowFragment extends BaseLazyFragment {
 
     @Override
     protected View getLoadingTargetView() {
-        return mSwipeRefreshLayout;
+        return contentLl;
     }
 
     @Override
@@ -112,7 +115,6 @@ public class OrderShowFragment extends BaseLazyFragment {
     }
 
     private void initDatas() {
-
         mMoreListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -145,17 +147,22 @@ public class OrderShowFragment extends BaseLazyFragment {
     }
 
     public void loadingInitData() {
-        TLog.i("loading init data:", bAlreadyGetData+" "+SharedData.orderTabs[tabPosition] + " status:" + status);
-//        toggleShowLoading(true, null);
+        TLog.i("loading init data:", bAlreadyGetData + " " + SharedData.orderTabs[tabPosition] + " status:" + status);
+        toggleShowLoading(true, null);
         if (NetUtils.isNetworkConnected(getActivity().getApplicationContext())) {
             ApiManager.getService(getActivity().getApplicationContext()).getShopOrderList(page, status, new Callback<GetShopOrderListRes>() {
                 @Override
                 public void success(GetShopOrderListRes getShopOrderListRes, Response response) {
                     if (!isFragDestroy) {
                         if (getShopOrderListRes.getOrders() != null && getShopOrderListRes.getOrders().size() == 0) {
-//                            toggleShowEmpty(true, null, emtpyListener);
+                            toggleShowEmpty(true, null, emtpyListener);
+                            bToggleEmpty=true;
                         } else {
-//                            toggleShowLoading(false, null);
+                            toggleShowLoading(false, null);
+                            if(bToggleEmpty){
+                                toggleRestore();
+                                bToggleEmpty=false;
+                            }
                             refreshDate(getShopOrderListRes.getOrders(), LOAD);
                         }
                         bAlreadyGetData = true;
@@ -169,7 +176,8 @@ public class OrderShowFragment extends BaseLazyFragment {
                 }
             });
         } else {
-            showNetWorkError();
+            toggleNetworkError(true,emtpyListener);
+
         }
     }
 
