@@ -1,8 +1,13 @@
 package com.dreamspace.uucampusseller.ui;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,7 +50,11 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
     @Bind(R.id.personal_rl)
     RelativeLayout personalRl;
 
+    BroadcastReceiver broadcastReceiver;
+
     private List<Fragment> mFragments = new ArrayList<Fragment>();
+    public static final String ACTION_FINISH = "ACTION_FINISH";
+    public static final String LOGOUT = "LOGOUT";
 
     private int currentIndex = 0;
 
@@ -56,10 +65,7 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
 
     @Override
     protected void prepareDatas() {
-//        PreferenceUtils.putString(this, PreferenceUtils.Key.ACCESS, "4d06cc40-82e0-11e5-bd1c-00163e021195");
-//        PreferenceUtils.putString(this,PreferenceUtils.Key.SHOP_ID,"5636f3cf90c49063a04cabb8");
-//        PreferenceUtils.putString(this,PreferenceUtils.Key.CATEGORY,"旅游");
-//        TLog.i("user login:", PreferenceUtils.getString(getApplicationContext(),PreferenceUtils.Key.ACCESS));
+
     }
 
     @Override
@@ -67,6 +73,11 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
         initView();
         initDates();
         initListener();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     private void initView() {
@@ -79,12 +90,18 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
     }
 
     private void initDates() {
-
-        //测试
-       // access_token存放
-//        PreferenceUtils.putString(this.getApplicationContext(),
-//                PreferenceUtils.Key.ACCESS, "e4cde8f0-9114-11e5-8e72-00163e021195");// aae889e0-82d4-11e5-bd1c-00163e021195
-
+        //用来获取用户登出消息的广播
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if(intent.getStringExtra(LOGOUT).equals("logout")){
+                    finish();
+                }
+            }
+        };
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ACTION_FINISH);
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, intentFilter);
         OrderFragment orderFragment = new OrderFragment();
         GoodsFragment goodsFragment = new GoodsFragment();
         PersonFragment personFragment = new PersonFragment();
@@ -244,5 +261,11 @@ public class MainActivity extends AbsActivity implements View.OnClickListener{
     private void personalPageIconSetAlpha(float alpha){
         personalSelectLl.setAlpha(alpha);
         personalUnselectLl.setAlpha(1 - alpha);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
     }
 }

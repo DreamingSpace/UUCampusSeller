@@ -24,12 +24,15 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity android:name=".ui.activity.Login.LoginActivity">
+        </activity>
+
+        <activity android:name=".ui.SplashActivity"
+            android:theme="@style/welcome_style">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <!-- phote picker-->
         <activity android:name=".widget.photopicker.SelectPhotoActivity"/>
         <activity android:name=".widget.photopicker.PhotoPreviewActivity"/>

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.dreamspace.uucampusseller.R;
 import com.dreamspace.uucampusseller.common.utils.CommonUtils;
@@ -140,7 +141,8 @@ public abstract class AbsActivity extends AppCompatActivity {
      */
     protected void showToast(String msg) {
         if (null != msg && !CommonUtils.isEmpty(msg)) {
-            Snackbar.make(getWindow().getDecorView(), msg, Snackbar.LENGTH_SHORT).show();
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+//            Snackbar.make(getWindow().getDecorView(), msg, Snackbar.LENGTH_SHORT).show();
         }
     }
 
@@ -148,8 +150,12 @@ public abstract class AbsActivity extends AppCompatActivity {
         showToast(getResources().getString(R.string.network_error_tips));
     }
     protected void showInnerError(RetrofitError error) {
-        if (error.getBody() != null)
-            showToast(CommonUtils.getErrorInfo(error).getReason());
+        if (error != null)
+            if(error.getBody() == null){
+                showToast(getString(R.string.request_time_out));
+            }else{
+                showToast(CommonUtils.getErrorInfo(error).getReason());
+            }
     }
     @Override
     protected void onDestroy() {

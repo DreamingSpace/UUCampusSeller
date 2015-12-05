@@ -2,6 +2,7 @@ package com.dreamspace.uucampusseller.ui.activity.Login;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,8 +16,10 @@ import com.dreamspace.uucampusseller.common.utils.NetUtils;
 import com.dreamspace.uucampusseller.common.utils.PreferenceUtils;
 import com.dreamspace.uucampusseller.model.api.LoginReq;
 import com.dreamspace.uucampusseller.model.api.LoginRes;
+import com.dreamspace.uucampusseller.model.api.ShopStatusRes;
 import com.dreamspace.uucampusseller.model.api.UserInfoRes;
 import com.dreamspace.uucampusseller.ui.MainActivity;
+import com.dreamspace.uucampusseller.ui.activity.order.ApplyShopHintActivity;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;
 
 import butterknife.Bind;
@@ -61,6 +64,7 @@ public class LoginActivity extends AbsActivity {
         initListeners();
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setTitle("");
+        LoginUserName.setText(PreferenceUtils.getString(this,PreferenceUtils.Key.PHONE));
     }
 
     private void initListeners() {
@@ -96,7 +100,7 @@ public class LoginActivity extends AbsActivity {
     }
 
     //登录操作
-    private void login(LoginReq loginReq) {
+    private void login(final LoginReq loginReq) {
         progressDialog = ProgressDialog.show(this, "", "正在登录", true, false);
         if (NetUtils.isNetworkConnected(this)) {
             ApiManager.getService(this.getApplicationContext()).createAccessToken(loginReq, new Callback<LoginRes>() {
@@ -105,9 +109,10 @@ public class LoginActivity extends AbsActivity {
                     progressDialog.dismiss();
                     PreferenceUtils.putString(LoginActivity.this.getApplicationContext(),
                             PreferenceUtils.Key.ACCESS, loginRes.getAccess_token());
+                    PreferenceUtils.putString(LoginActivity.this,PreferenceUtils.Key.PHONE,loginReq.getPhone_num());
                     ApiManager.clear();
 
-                    getUserInfo();
+                    getShopInfo();
                 }
 
                 @Override
@@ -122,6 +127,32 @@ public class LoginActivity extends AbsActivity {
         }
     }
 
+    private void getShopInfo(){
+        if(!NetUtils.isNetworkConnected(this)){
+            showNetWorkError();
+            return;
+        }
+
+        ApiManager.getService(this).getShopStatus(new Callback<ShopStatusRes>() {
+            @Override
+            public void success(ShopStatusRes shopStatusRes, Response response) {
+                if(shopStatusRes != null){
+                    if(!shopStatusRes.getStatus().equals("ok")){
+                        readyGoThenKill(ApplyShopHintActivity.class);
+                        return;
+                    }
+                    PreferenceUtils.putString(LoginActivity.this,PreferenceUtils.Key.SHOP_ID,shopStatusRes.getShop_id());
+                    PreferenceUtils.putString(LoginActivity.this,PreferenceUtils.Key.CATEGORY,shopStatusRes.getCategory());
+                    getUserInfo();
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                showInnerError(error);
+            }
+        });
+    }
     //获取用户信息
     private void getUserInfo() {
         ApiManager.getService(getApplicationContext()).getUserInfo(new Callback<UserInfoRes>() {
