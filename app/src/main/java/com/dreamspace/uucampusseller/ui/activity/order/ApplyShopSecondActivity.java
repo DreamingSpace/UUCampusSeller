@@ -56,6 +56,7 @@ public class ApplyShopSecondActivity extends AbsActivity{
         req.setPhone_num(bundle.getString(ApplyShopFirstActivity.EXTRA_CONNECT_PHONE));
         req.setAddress(bundle.getString(ApplyShopFirstActivity.EXTRA_CONNECT_ADDRESS));
         req.setImage(bundle.getString(ApplyShopFirstActivity.EXTRA_SHOP_PHOTO));
+        req.setLocation("东南大学九龙湖校区");
     }
 
     @Override
@@ -67,9 +68,6 @@ public class ApplyShopSecondActivity extends AbsActivity{
     void commit(){
         if(isCorrect()) {
             createShop();
-
-        }else{
-            showToast("填写信息错误");
         }
     }
 
@@ -127,8 +125,17 @@ public class ApplyShopSecondActivity extends AbsActivity{
     public boolean isCorrect() {
         //判断填写信息正确
         boolean correct = true;
-        if(mClassifyEt.length()==0||mShopIntroductionEt.length()==0){
-            correct=false;
+        if(mClassifyEt.length()==0){
+            showToast("请选择店铺类型");
+            return false;
+        }
+        if(mBusinessAreaEt.length()==0){
+            showToast("请填写经营范围");
+            return false;
+        }
+        if(mShopIntroductionEt.length()<10){
+            showToast("店铺简介字数不少于10个");
+            return false;
         }
         return correct;
     }

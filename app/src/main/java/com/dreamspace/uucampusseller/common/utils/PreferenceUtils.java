@@ -19,6 +19,7 @@ public class PreferenceUtils {
         public static final String PHONE="PHONE";
         public static final String SHOP_ID = "SHOP_ID";
         public static final String CATEGORY = "CATEGORY";
+        public static final String LOCATION="location";
     }
 
     public static final String DEFAULT_STRING = "";

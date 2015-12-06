@@ -49,11 +49,11 @@ public class ApplyShopFirstActivity extends AbsActivity {
     public static final String EXTRA_SHOP_HOST_NAME = "shop_host_name";
     public static final String EXTRA_CONNECT_PHONE = "connect_phone";
     public static final String EXTRA_CONNECT_ADDRESS = "connect_address";
-    private boolean correct=true;
+    private boolean correct = true;
 
     public static int PHOTO_REQUEST_CODE = 1;
     private String mLocalImagePath = null;
-    private String mPhotoPath=null;
+    private String mPhotoPath = null;
     ProgressDialog pd = null;
 
     @Override
@@ -86,15 +86,30 @@ public class ApplyShopFirstActivity extends AbsActivity {
             bundle.putString(EXTRA_CONNECT_PHONE, mConnectPhoneEt.getText().toString());
             bundle.putString(EXTRA_CONNECT_ADDRESS, mConnectAddressEt.getText().toString());
             readyGo(ApplyShopSecondActivity.class, bundle);
-        } else {
-            showToast("填写信息有误");
         }
     }
 
     public boolean isCorrect() {
         //判断填写信息无误
-        if(mPhotoPath==null||mShopNameEt.length()==0||mShopHostNameEt.length()==0||mConnectPhoneEt.length()==0){
-            correct=false;
+        if (mPhotoPath == null) {
+            showToast("请上传照片");
+            return false;
+        }
+        if (mShopNameEt.length() == 0) {
+            showToast("请填写店铺名称");
+            return false;
+        }
+        if (mShopHostNameEt.length() == 0) {
+            showToast("请填写店主姓名");
+            return false;
+        }
+        if (mConnectPhoneEt.length() != 11) {
+            showToast("联系电话填写有误");
+            return false;
+        }
+        if (mConnectAddressEt.length() == 0) {
+            showToast("请填写联系地址");
+            return false;
         }
         return correct;
     }
@@ -103,19 +118,16 @@ public class ApplyShopFirstActivity extends AbsActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PHOTO_REQUEST_CODE && resultCode == RESULT_OK) {
             if (data != null) {
-                 mLocalImagePath = data.getStringExtra(SelectPhotoActivity.PHOTO_PATH);
+                mLocalImagePath = data.getStringExtra(SelectPhotoActivity.PHOTO_PATH);
                 upLoadImage(mLocalImagePath);  //图片上传至七牛服务器
-                Glide.with(this)
-                        .load(mLocalImagePath)
-                        .centerCrop()
-                        .into(mPhotoIv);
+
             }
         }
     }
 
     //上传图片
-    private void upLoadImage(final String path){
-        TLog.i("Path:",path);
+    private void upLoadImage(final String path) {
+        TLog.i("Path:", path);
         pd = ProgressDialog.show(this, "", "正在创建", true, false);
         if (NetUtils.isNetworkConnected(this.getApplicationContext())) {
             ApiManager.getService(this).createQiNiuToken(new Callback<QnRes>() {
@@ -125,8 +137,12 @@ public class ApplyShopFirstActivity extends AbsActivity {
                         @Override
                         public void complete(String key, ResponseInfo info, JSONObject response) {
                             if (info.isOK()) {
-                                mPhotoPath=key;   //获取上传的七牛服务器图片url，并传到下一个activity
+                                mPhotoPath = key;   //获取上传的七牛服务器图片url，并传到下一个activity
                                 pd.dismiss();
+                                Glide.with(ApplyShopFirstActivity.this)
+                                        .load(mLocalImagePath)
+                                        .centerCrop()
+                                        .into(mPhotoIv);
                             } else if (info.isServerError()) {
                                 pd.dismiss();
                                 showToast("服务暂时不可用，请稍后重试");
@@ -138,11 +154,11 @@ public class ApplyShopFirstActivity extends AbsActivity {
                 @Override
                 public void failure(RetrofitError error) {
                     pd.dismiss();
-                    TLog.i("error:",error.getMessage() + error.toString());
+                    TLog.i("error:", error.getMessage() + error.toString());
                     showInnerError(error);
                 }
             });
-        }else{
+        } else {
             pd.dismiss();
             showNetWorkError();
         }

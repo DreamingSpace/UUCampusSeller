@@ -8,6 +8,7 @@ public class CreateShopReq {
     private String image;
     private String category;
     private String owner;
+    private String location;
     private String phone_num;
     private String address;
     private String main;
@@ -63,6 +64,14 @@ public class CreateShopReq {
 
     public String getMain() {
         return main;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public void setMain(String main) {

@@ -6,7 +6,7 @@
     <LinearLayout
         android:id="@+id/person_linear"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="190dp"
         android:layout_gravity="center_horizontal"
         android:orientation="vertical"
         android:background="@color/white">
@@ -24,8 +24,8 @@
             android:text="东大旅游吧"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:textSize="20sp"
-            android:textColor="@color/black_opaque"/>
+            android:textSize="18sp"
+            android:textColor="@color/black_40"/>
     </LinearLayout>
 
     <LinearLayout
@@ -50,16 +50,16 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
                 android:text="支付宝账户"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:gravity="center"
                 android:layout_toRightOf="@+id/personal_img1"
-                android:textColor="@color/black_opaque"/>
+                android:textColor="@color/black_40"/>
             <TextView
                 android:id="@+id/ali_bind_text"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@+id/personal_arrow1"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="未绑定"
                 android:layout_marginRight="10dp"
                 android:gravity="center"/>
@@ -96,10 +96,10 @@
                 android:layout_height="match_parent"
                 android:text="悠悠商家使用说明"
                 android:layout_marginLeft="15dp"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:gravity="center"
                 android:layout_toRightOf="@+id/personal_img2"
-                android:textColor="@color/black_opaque"/>
+                android:textColor="@color/black_40"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -132,10 +132,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="设置"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:gravity="center"
                 android:layout_toRightOf="@+id/personal_img3"
-                android:textColor="@color/black_opaque"/>
+                android:textColor="@color/black_40"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -167,11 +167,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="关于"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:gravity="center"
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@+id/personal_img4"
-                android:textColor="@color/black_opaque"/>
+                android:textColor="@color/black_40"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -203,11 +203,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="意见反馈"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:gravity="center"
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@+id/personal_img5"
-                android:textColor="@color/black_opaque"/>
+                android:textColor="@color/black_40"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
