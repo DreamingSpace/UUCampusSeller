@@ -111,8 +111,8 @@
     <orderEntry type="library" exported="" name="android-async-http-1.4.7" level="project" />
     <orderEntry type="library" exported="" name="utils-v4-1.4.1" level="project" />
     <orderEntry type="library" exported="" name="design-22.2.0" level="project" />
-    <orderEntry type="library" exported="" name="qiniu-android-sdk-7.0.7.1" level="project" />
     <orderEntry type="library" exported="" name="glide-3.6.0" level="project" />
+    <orderEntry type="library" exported="" name="qiniu-android-sdk-7.0.7.1" level="project" />
     <orderEntry type="module" module-name="qrcodereaderview" exported="" />
   </component>
 </module>
