@@ -1,6 +1,7 @@
 package com.dreamspace.uucampusseller.ui.activity.Login;
 
 import android.app.ProgressDialog;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -8,15 +9,14 @@ import android.widget.TextView;
 
 import com.dreamspace.uucampusseller.R;
 import com.dreamspace.uucampusseller.api.ApiManager;
-import com.dreamspace.uucampusseller.common.SharedData;
 import com.dreamspace.uucampusseller.common.utils.CommonUtils;
 import com.dreamspace.uucampusseller.common.utils.NetUtils;
 import com.dreamspace.uucampusseller.common.utils.PreferenceUtils;
 import com.dreamspace.uucampusseller.model.api.LoginReq;
 import com.dreamspace.uucampusseller.model.api.LoginRes;
 import com.dreamspace.uucampusseller.model.api.ShopStatusRes;
-import com.dreamspace.uucampusseller.model.api.UserInfoRes;
 import com.dreamspace.uucampusseller.ui.MainActivity;
+import com.dreamspace.uucampusseller.ui.activity.order.ApplyShopDoneActivity;
 import com.dreamspace.uucampusseller.ui.activity.order.ApplyShopHintActivity;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;
 
@@ -131,15 +131,24 @@ public class LoginActivity extends AbsActivity {
         ApiManager.getService(this).getShopStatus(new Callback<ShopStatusRes>() {
             @Override
             public void success(ShopStatusRes shopStatusRes, Response response) {
-                if(shopStatusRes != null){
+                if(shopStatusRes!=null){
                     PreferenceUtils.putString(LoginActivity.this,PreferenceUtils.Key.SHOP_ID,shopStatusRes.getShop_id());
                     PreferenceUtils.putString(LoginActivity.this,PreferenceUtils.Key.CATEGORY,shopStatusRes.getCategory());
-                    getUserInfo();
+                    progressDialog.dismiss();
+                    showToast("登录成功~");
+                }
+                if(shopStatusRes.getStatus().equals("ok")){
+                    readyGoThenKill(MainActivity.class);
+                }else{
+                    Bundle bundle = new Bundle();
+                    bundle.putString("shop_id",shopStatusRes.getShop_id());
+                    readyGoThenKill(ApplyShopDoneActivity.class, bundle);
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
+                progressDialog.dismiss();
                 if(CommonUtils.getErrorInfo(error).getState().equals("error")){
                     readyGo(ApplyShopHintActivity.class);
                     return;
@@ -148,32 +157,6 @@ public class LoginActivity extends AbsActivity {
                 }
             }
         });
-    }
-    //获取用户信息
-    private void getUserInfo() {
-        ApiManager.getService(getApplicationContext()).getUserInfo(new Callback<UserInfoRes>() {
-
-            @Override
-            public void success(UserInfoRes userInfoRes, Response response) {
-                if (userInfoRes != null) {
-                    saveUserInfo(userInfoRes);
-                    progressDialog.dismiss();
-                    showToast("登录成功~");
-                    readyGoThenKill(MainActivity.class);
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                progressDialog.dismiss();
-                showInnerError(error);
-            }
-        });
-    }
-
-    //保存用户信息到本地
-    private void saveUserInfo(UserInfoRes userInfoRes) {
-        SharedData.user = userInfoRes;
     }
 
     //输入有效性判断
