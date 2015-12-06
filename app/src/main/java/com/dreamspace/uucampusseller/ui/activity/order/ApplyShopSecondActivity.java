@@ -9,7 +9,6 @@ import com.dreamspace.uucampusseller.R;
 import com.dreamspace.uucampusseller.api.ApiManager;
 import com.dreamspace.uucampusseller.common.SharedData;
 import com.dreamspace.uucampusseller.common.utils.NetUtils;
-import com.dreamspace.uucampusseller.common.utils.PreferenceUtils;
 import com.dreamspace.uucampusseller.common.utils.TLog;
 import com.dreamspace.uucampusseller.model.api.CreateShopReq;
 import com.dreamspace.uucampusseller.model.api.CreateShopRes;
@@ -57,7 +56,7 @@ public class ApplyShopSecondActivity extends AbsActivity{
         req.setPhone_num(bundle.getString(ApplyShopFirstActivity.EXTRA_CONNECT_PHONE));
         req.setAddress(bundle.getString(ApplyShopFirstActivity.EXTRA_CONNECT_ADDRESS));
         req.setImage(bundle.getString(ApplyShopFirstActivity.EXTRA_SHOP_PHOTO));
-        req.setLocation(PreferenceUtils.getString(this, PreferenceUtils.Key.LOCATION));
+        req.setLocation("东南大学九龙湖校区");
     }
 
     @Override
