@@ -86,15 +86,30 @@ public class ApplyShopFirstActivity extends AbsActivity {
             bundle.putString(EXTRA_CONNECT_PHONE, mConnectPhoneEt.getText().toString());
             bundle.putString(EXTRA_CONNECT_ADDRESS, mConnectAddressEt.getText().toString());
             readyGo(ApplyShopSecondActivity.class, bundle);
-        } else {
-            showToast("填写信息有误");
         }
     }
 
     public boolean isCorrect() {
         //判断填写信息无误
-        if(mPhotoPath==null||mShopNameEt.length()==0||mShopHostNameEt.length()==0||mConnectPhoneEt.length()==0){
-            correct=false;
+        if(mPhotoPath==null){
+            showToast("请上传照片");
+           return false;
+        }
+        if(mShopNameEt.length()==0){
+            showToast("请填写店铺名称");
+            return false;
+        }
+        if(mShopHostNameEt.length()==0){
+            showToast("请填写店主姓名");
+            return false;
+        }
+        if(mConnectPhoneEt.length()!=11){
+            showToast("联系电话填写有误");
+            return false;
+        }
+        if(mConnectAddressEt.length()==0){
+            showToast("请填写联系地址");
+            return false;
         }
         return correct;
     }

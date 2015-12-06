@@ -60,6 +60,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
+                        android:maxLength="10"
                         android:singleLine="true" />
 
                     <TextView
@@ -93,6 +94,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
+                        android:maxLength="10"
                         android:singleLine="true" />
 
                     <TextView
@@ -127,6 +129,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:inputType="number"
+                        android:phoneNumber="true"
                         android:singleLine="true" />
 
                     <TextView
