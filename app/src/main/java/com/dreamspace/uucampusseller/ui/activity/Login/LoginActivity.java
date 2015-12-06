@@ -1,8 +1,6 @@
 package com.dreamspace.uucampusseller.ui.activity.Login;
 
 import android.app.ProgressDialog;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -71,8 +69,6 @@ public class LoginActivity extends AbsActivity {
         loginPageLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                测试
-//                readyGoThenKill(MainActivity.class);
                 String phoneNum = LoginUserName.getText().toString();
                 String password = LoginPwd.getText().toString();
                 if (isValid(phoneNum, password)) {
@@ -111,7 +107,6 @@ public class LoginActivity extends AbsActivity {
                             PreferenceUtils.Key.ACCESS, loginRes.getAccess_token());
                     PreferenceUtils.putString(LoginActivity.this,PreferenceUtils.Key.PHONE,loginReq.getPhone_num());
                     ApiManager.clear();
-
                     getShopInfo();
                 }
 
@@ -137,10 +132,6 @@ public class LoginActivity extends AbsActivity {
             @Override
             public void success(ShopStatusRes shopStatusRes, Response response) {
                 if(shopStatusRes != null){
-                    if(!shopStatusRes.getStatus().equals("ok")){
-                        readyGoThenKill(ApplyShopHintActivity.class);
-                        return;
-                    }
                     PreferenceUtils.putString(LoginActivity.this,PreferenceUtils.Key.SHOP_ID,shopStatusRes.getShop_id());
                     PreferenceUtils.putString(LoginActivity.this,PreferenceUtils.Key.CATEGORY,shopStatusRes.getCategory());
                     getUserInfo();
@@ -149,7 +140,12 @@ public class LoginActivity extends AbsActivity {
 
             @Override
             public void failure(RetrofitError error) {
-                showInnerError(error);
+                if(CommonUtils.getErrorInfo(error).getState().equals("error")){
+                    readyGo(ApplyShopHintActivity.class);
+                    return;
+                }else{
+                    showInnerError(error);
+                }
             }
         });
     }
@@ -198,12 +194,5 @@ public class LoginActivity extends AbsActivity {
             return false;
         }
         return true;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 }
