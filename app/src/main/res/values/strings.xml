@@ -19,7 +19,7 @@
     <string name="person">个人</string>
     <string name="scan_code_confirm">扫码确认</string>
     <string name="add_good">添加</string>
-    <string name="back_home">返回主页</string>
+    <string name="back_home">进入主页</string>
 
     <!-- Goods-->
     <string name="add_good1">添加商品</string>

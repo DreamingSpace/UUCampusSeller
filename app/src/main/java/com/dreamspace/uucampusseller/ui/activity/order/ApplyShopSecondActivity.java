@@ -1,5 +1,6 @@
 package com.dreamspace.uucampusseller.ui.activity.order;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -83,6 +84,10 @@ public class ApplyShopSecondActivity extends AbsActivity{
                     TLog.i("创建店铺成功：",shop_id);
                     Bundle bundle = new Bundle();
                     bundle.putString(EXTRA_SHOP_ID,shop_id);
+                    //发送广播，销毁前一个activity
+                    Intent intent = new Intent();
+                    intent.setAction("destroyActivity");
+                    sendBroadcast(intent);
                     readyGoThenKill(ApplyShopDoneActivity.class, bundle);
                 }
 
