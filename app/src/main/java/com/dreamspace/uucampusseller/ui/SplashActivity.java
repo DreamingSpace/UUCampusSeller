@@ -21,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 Intent intent;
                 //如果没有申请店铺则跳转到登录界面
-                if(PreferenceUtils.hasKey(SplashActivity.this,PreferenceUtils.Key.ACCESS)){
+                if(PreferenceUtils.hasKey(SplashActivity.this,PreferenceUtils.Key.SHOP_ID)){
                     intent = new Intent(SplashActivity.this,MainActivity.class);
                 }else{
                     intent = new Intent(SplashActivity.this,LoginActivity.class);

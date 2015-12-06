@@ -132,12 +132,13 @@ public class LoginActivity extends AbsActivity {
             @Override
             public void success(ShopStatusRes shopStatusRes, Response response) {
                 if(shopStatusRes!=null){
-                    PreferenceUtils.putString(LoginActivity.this,PreferenceUtils.Key.SHOP_ID,shopStatusRes.getShop_id());
-                    PreferenceUtils.putString(LoginActivity.this,PreferenceUtils.Key.CATEGORY,shopStatusRes.getCategory());
                     progressDialog.dismiss();
                     showToast("登录成功~");
                 }
                 if(shopStatusRes.getStatus().equals("ok")){
+                    PreferenceUtils.putString(LoginActivity.this,PreferenceUtils.Key.SHOP_ID,shopStatusRes.getShop_id());
+                    PreferenceUtils.putString(LoginActivity.this,PreferenceUtils.Key.CATEGORY,shopStatusRes.getCategory());
+                    PreferenceUtils.putString(LoginActivity.this,PreferenceUtils.Key.SHOP_STATUS,shopStatusRes.getCategory());
                     readyGoThenKill(MainActivity.class);
                 }else{
                     Bundle bundle = new Bundle();
