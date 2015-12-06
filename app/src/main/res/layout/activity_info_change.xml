@@ -10,7 +10,9 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/info_change_iron"
                 android:layout_gravity="center_horizontal"

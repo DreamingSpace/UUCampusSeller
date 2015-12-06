@@ -24,7 +24,7 @@
             android:text="东大旅游吧"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textColor="@color/black_40"/>
     </LinearLayout>
 

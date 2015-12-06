@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.dreamspace.uucampusseller.R;
 import com.dreamspace.uucampusseller.common.utils.PreferenceUtils;
 import com.dreamspace.uucampusseller.ui.activity.Login.LoginActivity;
-import com.dreamspace.uucampusseller.ui.activity.order.ApplyShopHintActivity;
 
 /**
  * Created by Lx on 2015/11/28.
@@ -21,13 +20,9 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent;
-                //如果没有申请店铺则跳转到申请店铺界面
+                //如果没有申请店铺则跳转到登录界面
                 if(PreferenceUtils.hasKey(SplashActivity.this,PreferenceUtils.Key.ACCESS)){
-                    if(PreferenceUtils.hasKey(SplashActivity.this,PreferenceUtils.Key.SHOP_ID)){
-                        intent = new Intent(SplashActivity.this, ApplyShopHintActivity.class);
-                    }else{
-                        intent = new Intent(SplashActivity.this,MainActivity.class);
-                    }
+                    intent = new Intent(SplashActivity.this,MainActivity.class);
                 }else{
                     intent = new Intent(SplashActivity.this,LoginActivity.class);
                 }
