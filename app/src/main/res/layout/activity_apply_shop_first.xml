@@ -60,6 +60,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
+                        android:gravity="center_vertical"
                         android:maxLength="10"
                         android:singleLine="true" />
 
@@ -74,6 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
@@ -94,6 +96,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
+                        android:gravity="center_vertical"
                         android:maxLength="10"
                         android:singleLine="true" />
 
@@ -108,6 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
@@ -128,6 +132,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
+                        android:gravity="center_vertical"
                         android:inputType="number"
                         android:phoneNumber="true"
                         android:singleLine="true" />
@@ -143,6 +148,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
@@ -163,6 +169,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
+                        android:gravity="center_vertical"
                         android:singleLine="true" />
 
                     <TextView

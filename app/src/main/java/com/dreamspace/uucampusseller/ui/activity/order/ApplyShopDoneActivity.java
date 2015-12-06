@@ -9,6 +9,7 @@ import com.dreamspace.uucampusseller.common.utils.CommonUtils;
 import com.dreamspace.uucampusseller.common.utils.NetUtils;
 import com.dreamspace.uucampusseller.common.utils.TLog;
 import com.dreamspace.uucampusseller.model.api.ShopInfoRes;
+import com.dreamspace.uucampusseller.model.api.ShopStatusRes;
 import com.dreamspace.uucampusseller.ui.MainActivity;
 import com.dreamspace.uucampusseller.ui.base.AbsActivity;
 
@@ -62,7 +63,31 @@ public class ApplyShopDoneActivity extends AbsActivity {
 
     @OnClick(R.id.apply_shop_done_back_btn)
     void backHome() {
-        readyGo(MainActivity.class);
+        checkShop();
+    }
+
+    private void checkShop() {
+        if(NetUtils.isNetworkConnected(getApplicationContext())){
+            ApiManager.getService(getApplicationContext()).getShopStatus(new Callback<ShopStatusRes>() {
+                @Override
+                public void success(ShopStatusRes shopStatusRes, Response response) {
+                    if(shopStatusRes.getStatus().equals("ok")){
+                        showToast("恭喜您的店铺通过审核！");
+                        readyGoThenKill(MainActivity.class);
+                    }else{
+                        showToast("您的店铺还在审核中，请耐心等候！");
+                    }
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    showInnerError(error);
+                }
+            });
+        }else{
+            showNetWorkError();
+        }
+
     }
 
     public void getShopInfo() {
